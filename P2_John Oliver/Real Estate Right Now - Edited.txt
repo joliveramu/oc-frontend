@@ -1,0 +1,13 @@
+.status-sticker{
+	display:none;
+}
+.site-title-text, #billtext100{
+	font-size: 30px;
+	font-family: Arial;
+	font-style: bold;
+}
+.site-description{
+	font-family: Candara;
+	font-size: 18px;
+	font-style: italic;
+}

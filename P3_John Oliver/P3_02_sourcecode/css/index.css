@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellota:ital,wght@1,700&display=swap');
+
+.nav-brand-font{
+  font-family: 'Piedra', cursive;
+  font-size: 2rem;
+  color:green;
+}
+
+.nav-brand-font:hover{
+  font-family: 'Piedra', cursive;
+  font-size: 2rem;
+  color:green;
+}
+
+.nav-link-font{
+  font-family: 'Piedra', cursive;
+  font-size: 1.5em;
+}
+
+
+.card img{
+    max-width: 100%;
+}
+.description{
+display: block;
+width: 100px;
+overflow: hidden;
+white-space: nowrap;
+ text-overflow: ellipsis;
+}
+.jumbotron-img{
+    background-image:  url("../img/movie.jpg");
+    background-size: cover;
+    color: white;
+
+}
+body{
+background-image: linear-gradient(#92fc6f,#beffa8);
+}
+
+/* font awesome part */
+
+
+.img-socmed{
+  max-width: 100%;
+  height: auto;
+  font-family: 'Piedra', cursive;
+}
