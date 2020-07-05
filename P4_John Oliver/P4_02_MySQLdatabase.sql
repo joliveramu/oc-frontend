@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2020 at 04:47 PM
+-- Generation Time: Jul 05, 2020 at 12:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -105,11 +105,18 @@ CREATE TABLE `orderhistory` (
   `OrderId` int(11) NOT NULL,
   `MenuId` int(11) NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Price` double NOT NULL,
   `ClientId` int(11) NOT NULL,
   `DriverId` int(11) NOT NULL,
   `DatePlaced` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderhistory`
+--
+
+INSERT INTO `orderhistory` (`OrderId`, `MenuId`, `Quantity`, `ClientId`, `DriverId`, `DatePlaced`) VALUES
+(1, 1, 2, 1, 1, '2020-07-05 17:56:10'),
+(2, 2, 2, 2, 2, '2020-07-05 18:04:59');
 
 --
 -- Indexes for dumped tables
@@ -168,7 +175,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `orderhistory`
 --
 ALTER TABLE `orderhistory`
-  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
