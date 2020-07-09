@@ -39,11 +39,3 @@ body{
 background-image: linear-gradient(#92fc6f,#beffa8);
 }
 
-/* font awesome part */
-
-
-.img-socmed{
-  max-width: 100%;
-  height: auto;
-  font-family: 'Piedra', cursive;
-}

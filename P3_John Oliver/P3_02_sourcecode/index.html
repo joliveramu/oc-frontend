@@ -162,14 +162,17 @@
           <h2 id = "registration"><i class="fa fa-sign-in" aria-hidden="true"></i> Registration</h1>
           <hr/>
           <form class = "row">
+            <!-- Email address  -->
            <div class = "form-group col-md-6">
             <label class = "lead">Email address</label>
             <input type="email" class="form-control" style = "width: 75%;" placeholder="Enter your Email address" >
            </div>
+           <!-- Name of Participant -->
            <div class = "form-group col-md-6">
             <label class = "lead">Name of Participant</label>
             <input type="text" class="form-control" style = "width: 75%;" placeholder="Enter your name" >
            </div>
+           <!-- State option -->
            <div class="form-group col-md-6">
             <label for="stateSelect" class = "lead">Select State</label>
             <select class="form-control" id="stateSelect" required style = "width: 75%;">
@@ -227,28 +230,32 @@
               <option value="WY">Wyoming</option>
             </select>
           </div>
+          <!-- Participants to bring -->
           <div class = "form-group col-md-6">
             <label for="participantCount" class = "lead">How many Participant(s) will you bring?</label>
             <input type="number" class="form-control" style = "width: 75%;" id = "participantCount" 
             placeholder="Enter no. of ticket(s)"
             max = "10" min="0" required >
           </div>
+          <!-- Calendar -->
           <div class = "form-group col-md-6">
             <label for="dateOfAttendance" class = "lead">Date of Attendance</label>
             <input type="date" class="form-control" style = "width: 75%;" id = "dateOfAttendance" 
             placeholder="Date of Attendance" min = "2020-08-05" max = "2020-08-08"
             required >
           </div>
+          <!-- Submit button -->
           <div class = "form-group col-md-6">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
           </form>
           <br/>
          
-         
+         <!-- Social media -->
           <h2 id = "socmed"><i class="fa fa-bullhorn" aria-hidden="true"></i> Social Media</h1>
            
           <hr/>
+
           <div class = "container-fluid mb-5 responsive p-2">
             <a href = "https://www.facebook.com" target = "blank" 
             class = "btn btn-primary btn-lg fa fa-facebook img-fluid m-2"> Facebook</a>  
@@ -263,11 +270,12 @@
             <a href = "https://www.boston.gov/parks/public-garden" target = "blank" 
             class = "btn btn-danger btn-lg fa fa-map-marker img-fluid m-2"> Boston Public Garden</a>
           </div>
+
          
       
           
          
-          
+          <!-- Scroll up button -->
           <div class = "fixed-bottom text-right">
               <a href = "" id = "btnUp" class = "btn btn-danger m-1">Scroll Up</a>
             </div>
