@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2020 at 04:15 PM
+-- Generation Time: Jul 12, 2020 at 05:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -32,19 +32,20 @@ CREATE TABLE `client` (
   `ClientName` varchar(100) NOT NULL,
   `Address1` varchar(255) NOT NULL,
   `Address2` varchar(255) DEFAULT NULL,
-  `ContactNo` varchar(25) DEFAULT NULL
+  `ContactNo` varchar(25) DEFAULT NULL,
+  `EmailAddress` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`ClientId`, `ClientName`, `Address1`, `Address2`, `ContactNo`) VALUES
-(1, 'John R. Dempsey', '3352 Emily Renzelli Boulevard', '', '831-621-0342'),
-(2, 'Francis B. Mortenson', '4935 Edgewood Avenue', '', '559-266-9449'),
-(3, 'Don C. Holman', '51 Francis Mine', '', '530-209-7814'),
-(4, 'Jason C. Harris', '3884 Masonic Hill Road', '', '501-523-4148'),
-(5, 'Timothy G. Stackhouse', '2852 Sussex Court', '', '254-421-1733');
+INSERT INTO `client` (`ClientId`, `ClientName`, `Address1`, `Address2`, `ContactNo`, `EmailAddress`) VALUES
+(1, 'John R. Dempsey', '3352 Emily Renzelli Boulevard', '', '831-621-0342', 'john.r.dempsey@hotmail.com'),
+(2, 'Francis B. Mortenson', '4935 Edgewood Avenue', '', '559-266-9449', 'fb.mortenson@yahoo.om'),
+(3, 'Don C. Holman', '51 Francis Mine', '', '530-209-7814', 'holmandc@gmail.com'),
+(4, 'Jason C. Harris', '3884 Masonic Hill Road', '', '501-523-4148', 'jasoncharris@outlook.com'),
+(5, 'Timothy G. Stackhouse', '2852 Sussex Court', '', '254-421-1733', 'timgstackhouse@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -78,8 +79,8 @@ CREATE TABLE `menu` (
   `MenuId` int(11) NOT NULL,
   `MenuName` varchar(100) NOT NULL,
   `Price` decimal(10,2) NOT NULL,
-  `ServingDay` int(10) NOT NULL,
-  `MenuType` int(11) NOT NULL,
+  `ServingDay` enum('Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday') DEFAULT NULL,
+  `MenuType` enum('Main Dish','Dessert','N/A') DEFAULT NULL,
   `DateAdded` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -88,34 +89,34 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`MenuId`, `MenuName`, `Price`, `ServingDay`, `MenuType`, `DateAdded`) VALUES
-(1, 'Special Dumplings (10 pcs)', '4.00', 1, 1, '2020-07-04 22:18:10'),
-(2, 'T-Bone Steak', '7.00', 2, 1, '2020-07-04 22:18:10'),
-(3, 'Sizzling Porkchop', '6.00', 3, 1, '2020-07-04 22:18:10'),
-(4, 'Salisbury Steak', '3.00', 4, 1, '2020-07-04 22:18:10'),
-(5, 'Smoked Ham', '5.00', 5, 1, '2020-07-04 22:18:10'),
-(6, 'Large Chicken Strip (6pcs)', '6.00', 6, 1, '2020-07-04 22:18:10'),
-(7, 'Chicken Wings (1/2 Dozen)', '6.00', 7, 1, '2020-07-04 22:18:10'),
-(8, 'Sweet and Sour Pork (250 g)', '4.00', 1, 1, '2020-07-09 21:59:35'),
-(9, 'Smoked Spareribs (250g)', '4.00', 2, 1, '2020-07-09 21:59:35'),
-(10, 'Fried Sliced Fish (500g)', '4.00', 3, 1, '2020-07-09 21:59:35'),
-(11, 'Meat Loaf (250g)', '4.00', 4, 1, '2020-07-09 21:59:35'),
-(12, 'Deep Fried Shrimp (500g)', '4.00', 5, 1, '2020-07-09 21:59:35'),
-(13, 'Beef with Oyster Sauce (500g)', '6.00', 6, 1, '2020-07-09 21:59:35'),
-(14, 'Deep Fried Spicy Pork (500g)', '7.00', 7, 1, '2020-07-09 21:59:35'),
-(15, 'Tiramusu (250g)', '2.50', 1, 2, '2020-07-09 22:08:04'),
-(16, 'Chocolate Mousse in minutes (250g)', '2.50', 1, 2, '2020-07-09 22:08:04'),
-(17, 'Angel Food cake(250g)', '2.50', 2, 2, '2020-07-09 22:08:04'),
-(18, 'Apple and butterscotch pie (250g)', '2.50', 2, 2, '2020-07-09 22:08:04'),
-(19, 'Almond and date cake(250g)', '2.50', 3, 2, '2020-07-09 22:08:04'),
-(20, 'Apple Cinnamon custard cake (250g)', '2.75', 3, 2, '2020-07-09 22:08:04'),
-(21, 'Maltesers Tiramisu (250g)', '2.75', 4, 2, '2020-07-09 22:08:04'),
-(22, 'Choc a bloc (250g)', '2.75', 4, 2, '2020-07-09 22:08:04'),
-(23, 'Amaretto tart (250g)', '2.75', 5, 2, '2020-07-09 22:08:04'),
-(24, 'After-dinner mints (250g)', '2.75', 5, 2, '2020-07-09 22:08:04'),
-(25, 'Chocolate baubles (250g)', '3.00', 6, 2, '2020-07-09 22:08:04'),
-(26, 'Banana split (250g)', '3.00', 6, 2, '2020-07-09 22:08:04'),
-(27, 'Napoleon (250g)', '3.00', 7, 2, '2020-07-09 22:08:04'),
-(28, 'Mocha log (250g)', '3.00', 7, 2, '2020-07-09 22:08:04');
+(1, 'Special Dumplings (10 pcs)', '4.00', 'Monday', 'Main Dish', '2020-07-04 22:18:10'),
+(2, 'T-Bone Steak', '7.00', 'Tuesday', 'Main Dish', '2020-07-04 22:18:10'),
+(3, 'Sizzling Porkchop', '6.00', 'Wednesday', 'Main Dish', '2020-07-04 22:18:10'),
+(4, 'Salisbury Steak', '3.00', 'Thursday', 'Main Dish', '2020-07-04 22:18:10'),
+(5, 'Smoked Ham', '5.00', 'Friday', 'Main Dish', '2020-07-04 22:18:10'),
+(6, 'Large Chicken Strip (6pcs)', '6.00', 'Saturday', 'Main Dish', '2020-07-04 22:18:10'),
+(7, 'Chicken Wings (1/2 Dozen)', '6.00', 'Sunday', 'Main Dish', '2020-07-04 22:18:10'),
+(8, 'Sweet and Sour Pork (250 g)', '4.00', 'Monday', 'Main Dish', '2020-07-09 21:59:35'),
+(9, 'Smoked Spareribs (250g)', '4.00', 'Tuesday', 'Main Dish', '2020-07-09 21:59:35'),
+(10, 'Fried Sliced Fish (500g)', '4.00', 'Wednesday', 'Main Dish', '2020-07-09 21:59:35'),
+(11, 'Meat Loaf (250g)', '4.00', 'Thursday', 'Main Dish', '2020-07-09 21:59:35'),
+(12, 'Deep Fried Shrimp (500g)', '4.00', 'Friday', 'Main Dish', '2020-07-09 21:59:35'),
+(13, 'Beef with Oyster Sauce (500g)', '6.00', 'Saturday', 'Main Dish', '2020-07-09 21:59:35'),
+(14, 'Deep Fried Spicy Pork (500g)', '7.00', 'Sunday', 'Main Dish', '2020-07-09 21:59:35'),
+(15, 'Tiramusu (250g)', '2.50', 'Monday', 'Dessert', '2020-07-09 22:08:04'),
+(16, 'Chocolate Mousse in minutes (250g)', '2.50', 'Monday', 'Dessert', '2020-07-09 22:08:04'),
+(17, 'Angel Food cake(250g)', '2.50', 'Tuesday', 'Dessert', '2020-07-09 22:08:04'),
+(18, 'Apple and butterscotch pie (250g)', '2.50', 'Tuesday', 'Dessert', '2020-07-09 22:08:04'),
+(19, 'Almond and date cake(250g)', '2.50', 'Wednesday', 'Dessert', '2020-07-09 22:08:04'),
+(20, 'Apple Cinnamon custard cake (250g)', '2.75', 'Wednesday', 'Dessert', '2020-07-09 22:08:04'),
+(21, 'Maltesers Tiramisu (250g)', '2.75', 'Thursday', 'Dessert', '2020-07-09 22:08:04'),
+(22, 'Choc a bloc (250g)', '2.75', 'Thursday', 'Dessert', '2020-07-09 22:08:04'),
+(23, 'Amaretto tart (250g)', '2.75', 'Friday', 'Dessert', '2020-07-09 22:08:04'),
+(24, 'After-dinner mints (250g)', '2.75', 'Friday', 'Dessert', '2020-07-09 22:08:04'),
+(25, 'Chocolate baubles (250g)', '3.00', 'Saturday', 'Dessert', '2020-07-09 22:08:04'),
+(26, 'Banana split (250g)', '3.00', 'Saturday', 'Dessert', '2020-07-09 22:08:04'),
+(27, 'Napoleon (250g)', '3.00', 'Sunday', 'Dessert', '2020-07-09 22:08:04'),
+(28, 'Mocha log (250g)', '3.00', 'Sunday', 'Dessert', '2020-07-09 22:08:04');
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,7 @@ CREATE TABLE `orderhistory` (
   `Quantity` int(11) NOT NULL,
   `ClientId` int(11) NOT NULL,
   `DriverId` int(11) NOT NULL,
-  `StatusId` int(11) NOT NULL,
+  `StatusId` enum('Placed','Accepted','Preparing','Delivery','Delivered','Cancelled') DEFAULT NULL,
   `DatePlaced` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,9 +139,9 @@ CREATE TABLE `orderhistory` (
 --
 
 INSERT INTO `orderhistory` (`OrderId`, `MenuId`, `Quantity`, `ClientId`, `DriverId`, `StatusId`, `DatePlaced`) VALUES
-(1, 1, 2, 1, 1, 1, '2020-07-05 17:56:10'),
-(2, 2, 2, 2, 2, 0, '2020-07-05 18:04:59'),
-(3, 3, 2, 3, 1, 2, '2020-07-09 22:10:17');
+(1, 1, 2, 1, 1, 'Placed', '2020-07-05 17:56:10'),
+(2, 2, 2, 2, 2, 'Preparing', '2020-07-05 18:04:59'),
+(3, 3, 2, 3, 1, 'Accepted', '2020-07-09 22:10:17');
 
 -- --------------------------------------------------------
 
@@ -154,11 +155,11 @@ CREATE TABLE `ordertracker` (
 ,`Quantity` int(11)
 ,`Price` decimal(10,2)
 ,`Total Price` decimal(20,2)
-,`Menu Type` varchar(9)
+,`Menu Type` enum('Main Dish','Dessert','N/A')
 ,`ClientName` varchar(100)
 ,`DriverName` varchar(100)
-,`Order Status` varchar(9)
-,`DatePlaced` datetime
+,`Order Status` enum('Placed','Accepted','Preparing','Delivery','Delivered','Cancelled')
+,`Date Placed` datetime
 );
 
 -- --------------------------------------------------------
@@ -168,7 +169,7 @@ CREATE TABLE `ordertracker` (
 --
 DROP TABLE IF EXISTS `ordertracker`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ordertracker`  AS  select `orderhistory`.`OrderId` AS `OrderId`,`m`.`MenuName` AS `MenuName`,`orderhistory`.`Quantity` AS `Quantity`,`m`.`Price` AS `Price`,`m`.`Price` * `orderhistory`.`Quantity` AS `Total Price`,case when `m`.`MenuType` = 1 then 'Main Dish' when `m`.`MenuType` = 2 then 'Dessert' else 'N/A' end AS `Menu Type`,`c`.`ClientName` AS `ClientName`,`d`.`DriverName` AS `DriverName`,case when `orderhistory`.`StatusId` = 0 then 'Placed' when `orderhistory`.`StatusId` = 1 then 'Accepted' when `orderhistory`.`StatusId` = 2 then 'Preparing' when `orderhistory`.`StatusId` = 3 then 'Delivery' when `orderhistory`.`StatusId` = 4 then 'Delivered' else 'Cancelled' end AS `Order Status`,`orderhistory`.`DatePlaced` AS `DatePlaced` from (((`orderhistory` join `menu` `m` on(`orderhistory`.`MenuId` = `m`.`MenuId`)) join `deliveryperson` `d` on(`d`.`DriverID` = `orderhistory`.`DriverId`)) join `client` `c` on(`c`.`ClientId` = `orderhistory`.`ClientId`)) order by `orderhistory`.`OrderId` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ordertracker`  AS  select `orderhistory`.`OrderId` AS `OrderId`,`m`.`MenuName` AS `MenuName`,`orderhistory`.`Quantity` AS `Quantity`,`m`.`Price` AS `Price`,`m`.`Price` * `orderhistory`.`Quantity` AS `Total Price`,`m`.`MenuType` AS `Menu Type`,`c`.`ClientName` AS `ClientName`,`d`.`DriverName` AS `DriverName`,`orderhistory`.`StatusId` AS `Order Status`,`orderhistory`.`DatePlaced` AS `Date Placed` from (((`orderhistory` join `menu` `m` on(`orderhistory`.`MenuId` = `m`.`MenuId`)) join `deliveryperson` `d` on(`d`.`DriverID` = `orderhistory`.`DriverId`)) join `client` `c` on(`c`.`ClientId` = `orderhistory`.`ClientId`)) order by `orderhistory`.`OrderId` ;
 
 --
 -- Indexes for dumped tables
@@ -245,3 +246,27 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Query for ordertracker
+--
+
+-- SELECT 
+-- OrderId,
+-- m.MenuName, 
+-- orderhistory.Quantity,
+-- m.Price,
+-- (m.Price * orderhistory.Quantity) as "Total Price",
+-- m.MenuType as "Menu Type",
+-- c.ClientName,
+-- d.DriverName,
+-- orderhistory.StatusId as "Order Status",
+-- DatePlaced as "Date Placed"
+-- from orderhistory
+-- Inner join menu as m
+-- on orderhistory.MenuId = m.MenuId
+-- inner join deliveryperson as d 
+-- on d.DriverID = orderhistory.DriverId
+-- inner join client as c
+-- on c.ClientId = orderhistory.ClientId
+-- order by OrderId asc;
