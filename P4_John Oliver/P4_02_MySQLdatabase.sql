@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 05:52 PM
+-- Generation Time: Jul 17, 2020 at 11:06 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -57,17 +57,18 @@ CREATE TABLE `deliveryperson` (
   `DriverID` int(11) NOT NULL,
   `DriverName` varchar(100) NOT NULL,
   `Address` varchar(255) NOT NULL,
-  `ContactNumber` varchar(16) NOT NULL
+  `ContactNumber` varchar(16) NOT NULL,
+  `EmailAddress` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `deliveryperson`
 --
 
-INSERT INTO `deliveryperson` (`DriverID`, `DriverName`, `Address`, `ContactNumber`) VALUES
-(1, 'Michael M. Gross', '2597 Long Street', '352-256-2820'),
-(2, 'Tim R. Davies', '3187 Hill Haven Drive', '253-954-6700'),
-(3, 'James M. Camp', '4251 Newton Street', '320-375-2872');
+INSERT INTO `deliveryperson` (`DriverID`, `DriverName`, `Address`, `ContactNumber`, `EmailAddress`) VALUES
+(1, 'Michael M. Gross', '2597 Long Street', '352-256-2820', 'mmgross@gmail.com'),
+(2, 'Tim R. Davies', '3187 Hill Haven Drive', '253-954-6700', 'trdavies@gmail.com'),
+(3, 'James M. Camp', '4251 Newton Street', '320-375-2872', 'james.camp@outlook.com');
 
 -- --------------------------------------------------------
 
@@ -246,27 +247,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
---
--- Query for ordertracker
---
-
--- SELECT 
--- OrderId,
--- m.MenuName, 
--- orderhistory.Quantity,
--- m.Price,
--- (m.Price * orderhistory.Quantity) as "Total Price",
--- m.MenuType as "Menu Type",
--- c.ClientName,
--- d.DriverName,
--- orderhistory.StatusId as "Order Status",
--- DatePlaced as "Date Placed"
--- from orderhistory
--- Inner join menu as m
--- on orderhistory.MenuId = m.MenuId
--- inner join deliveryperson as d 
--- on d.DriverID = orderhistory.DriverId
--- inner join client as c
--- on c.ClientId = orderhistory.ClientId
--- order by OrderId asc;
