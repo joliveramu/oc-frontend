@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2020 at 11:06 PM
+-- Generation Time: Jul 20, 2020 at 08:05 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -142,7 +142,10 @@ CREATE TABLE `orderhistory` (
 INSERT INTO `orderhistory` (`OrderId`, `MenuId`, `Quantity`, `ClientId`, `DriverId`, `StatusId`, `DatePlaced`) VALUES
 (1, 1, 2, 1, 1, 'Placed', '2020-07-05 17:56:10'),
 (2, 2, 2, 2, 2, 'Preparing', '2020-07-05 18:04:59'),
-(3, 3, 2, 3, 1, 'Accepted', '2020-07-09 22:10:17');
+(3, 3, 2, 3, 1, 'Accepted', '2020-07-09 22:10:17'),
+(4, 16, 3, 1, 1, 'Placed', '2020-07-20 01:53:09'),
+(5, 6, 1, 1, 1, 'Placed', '2020-07-20 01:55:27'),
+(6, 23, 1, 2, 3, 'Accepted', '2020-07-20 02:45:12');
 
 -- --------------------------------------------------------
 
@@ -229,7 +232,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `orderhistory`
 --
 ALTER TABLE `orderhistory`
-  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `OrderId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
