@@ -1,21 +1,15 @@
 // Initial values from the arrays below to form a quote
-var beginning = ["Hi! ","Yo! ","Hey "]
-var middle = ["What's up ","What up? ","How yo doin? "]
-var end = ["Dawg","Bro","Kid"]
+let beginning = ["Hi! ","Yo! ","Hey "]
+let middle = ["What's up ","What up? ","How yo doin? "]
+let end = ["Dawg","Bro","Kid"]
 
 // Quote placeholder for quotes that will be generated from the beginning, middle, and end arrays
-var quote = ""
+let quote = "";
 
-
-
-// looping three times to randomly generate sentences
-for(var i = 0; i < 3; i++)
-{
-    var index_0 = Math.floor(Math.random() * 3);
-    var index_1 = Math.floor(Math.random() * 3);
-    var index_2 = Math.floor(Math.random() * 3);
+    var index_0 = Math.floor(Math.random() * beginning.length);
+    var index_1 = Math.floor(Math.random() * middle.length);
+    var index_2 = Math.floor(Math.random() * end.length);
     quote = beginning[index_0] + middle[index_1] + end[index_2];
-}
 
 // Generated sentence
 console.log(quote);
