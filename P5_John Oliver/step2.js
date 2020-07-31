@@ -1,3 +1,5 @@
+const prompt = require('prompt-sync')();
+
 let quotes = [
     "",
     "The man who does not read books has no advantage over the one who cannot read them.",
@@ -23,12 +25,12 @@ let author = [
 ];
 
 
-let enterValue = 3;
 
-// do
-// {
-
-// }while(continuePrompt != 0);
+let enterValue;
+let decision;
+do
+{
+enterValue = prompt("Enter any number from 1 - 5: ");
 
 if(enterValue >0 && enterValue  <= 5)
 {
@@ -38,3 +40,12 @@ if(enterValue >0 && enterValue  <= 5)
         console.log(`"${quotes[randomNum]}" by ${author[randomNum]}\n`);
     }
 }
+
+decision = prompt("Type any number to continue. 0 if would like to quit: ")
+
+
+}while(decision != 0);
+
+
+
+
