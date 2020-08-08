@@ -35,7 +35,6 @@ function generateRandomQuote()
 }
 
 //Step 2 part
-
 let quotes = [
     "",
     "The man who does not read books has no advantage over the one who cannot read them.",
@@ -71,15 +70,17 @@ function generateNQuotes(_number)
             randomNum = Math.floor(Math.random() * quotes.length);
             console.log(`"${quotes[randomNum]}" by ${author[randomNum]}\n`);
         }
+    }else{
+        console.log("\nYou should pick numbers between 1 to 5!..");
     }
 }
 
-//Exported objects
+//Exported objects and functions needed for the step2.js
  module.exports = {
     generateRandomQuote,
     generateNQuotes
  };
 
 
-console.log(generateRandomQuote());
+
 

@@ -46,21 +46,41 @@ const tools = require('./step1.js');
 
 
 // }while(decision != 0);
-let choice = 2;
-let isNumber;
+let choice;
+let mode;
+do
+{
+mode = prompt("Input 1 or 2 to generate quote: ");
+let chosenMode = parseInt(mode, 10);
 
+switch(chosenMode)
+{
+    case 1:
+        console.log(tools.generateRandomQuote());
+        break;
+    case 2:
+        let askNumber = prompt("Enter number of quotes between 1 - 5: ");
+        let numberOfQuotes = parseInt(askNumber,10);
+        tools.generateNQuotes(numberOfQuotes);
+        break;
+    default:
+        console.log("\nYou should pick any number from 1 or 2!..");
+        break;
+}
+choice = prompt("If you don't want to generate any more quotes.. type \"stop\" else press \"enter\". ");
+}while(choice != "stop");
 
-    switch(choice)
-    {
-        case 1: 
-            console.log(tools.generateRandomQuote());
-            break;
-        case 2:
-            tools.generateNQuotes(2);
-            break;
-        default:
-            break;
-    }
+    // switch(choice)
+    // {
+    //     case 1: 
+    //         console.log(tools.generateRandomQuote());
+    //         break;
+    //     case 2:
+    //         tools.generateNQuotes(2);
+    //         break;
+    //     default:
+    //         break;
+    // }
 
 
 
