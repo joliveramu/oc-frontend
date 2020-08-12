@@ -1,3 +1,11 @@
-#gameCanvas{
-    border: 2px solid red;
-}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+  }

@@ -1,9 +1,14 @@
-let canvas = document.getElementById("gameCanvas");
-let context = canvas.getContext('2d');
+let turn = 1;
 
-context.fillStyle = 'red';
-context.fillRect(20,20,100,100);
-
-
-context.fillStyle = 'blue';
-context.fillRect(600,50, 100,100);
+function game(elem)
+{
+    if(turn == 1)
+    {
+        elem.innerHTML = "A";
+        turn = 2;
+    }else if(turn == 2)
+    {
+        elem.innerHTML = "B";
+        turn = 1;
+    }
+}
