@@ -1,87 +1,51 @@
-const prompt = require('prompt-sync')();
-const tools = require('./step1.js');
+const prompt = require('prompt-sync')(); //downloaded prompt library via npm
+const tools = require('./step1.js');//import step1.js files so that we can utilize all the imported functions
 
-// let quotes = [
-//     "",
-//     "The man who does not read books has no advantage over the one who cannot read them.",
-//     "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.",
-//     "Teachers can open the door, but you must enter it yourself.",
-//     "The beautiful thing about learning is that no one can take it away from you.",
-//     "Education is the most powerful weapon you can use to change the world",
-//     "The mind is not a vessel to be filled but a fire to be ignited.",
-//     "Don’t let what you cannot do interfere with what you can do.",
-//     "A person who never made a mistake never tried anything new."
-// ];
-
-// let author = [
-//     "",
-//     "Mark Twain",
-//     "Malcolm X",
-//     "Chinese proverb",
-//     "B.B. King",
-//     "BB King",
-//     "Plutarch",
-//     "John Wooden",
-//     "Albert Einstein"
-// ];
-
-
-
-// let enterValue;
-// let decision;
-// do
-// {
-// enterValue = prompt("Enter any number from 1 - 5: ");
-
-// if(enterValue >0 && enterValue  <= 5)
-// {
-//     for(let i = 1; i <= enterValue; i++)
-//     {
-//         let randomNum = Math.floor(Math.random() * quotes.length);
-//         console.log(`"${quotes[randomNum]}" by ${author[randomNum]}\n`);
-//     }
-// }
-
-// decision = prompt("Type any number to continue. 0 if would like to quit: ")
-
-
-// }while(decision != 0);
 let choice;
 let mode;
+let askNumber;
 do
 {
-mode = prompt("Input 1 or 2 to generate quote: ");
-let chosenMode = parseInt(mode, 10);
+//You'll be asked how many quotes ranging from 1 to 5 you would like to generate
+askNumber = prompt("Enter number of quotes to generate: (From 1 to 5): ");
+//Parse askNumber variable to integer
+let numberOfQuotes = parseInt(askNumber, 10);
 
-switch(chosenMode)
+if(numberOfQuotes > 0 && numberOfQuotes <= 5)
 {
-    case 1:
-        console.log(tools.generateRandomQuote());
-        break;
-    case 2:
-        let askNumber = prompt("Enter number of quotes between 1 - 5: ");
-        let numberOfQuotes = parseInt(askNumber,10);
-        tools.generateNQuotes(numberOfQuotes);
-        break;
-    default:
-        console.log("\nYou should pick any number from 1 or 2!..");
-        break;
+    mode = prompt("Choose (1) to Generate Simple quotes. (2) for other kind of quotes: ");
+    //Parse mode variable into integer
+    let chosenMode = parseInt(mode, 10);
+    
+    //choseMode variable will be evaluated according to the case available
+    switch(chosenMode)
+    {
+        case 1:
+        //Generate N number of quotes from the generateRandomQuote() function from step1.js file
+        for(let i = 0; i < askNumber; i++)
+        {
+            console.log(tools.generateRandomQuote());
+        }
+            break;
+        case 2:
+         //Generate N number of quotes to generateRandomQuoteType2() function which contains a parameter
+         //for  the number of quotes to be generated 
+            tools.generateRandomQuoteType2(askNumber);
+            break;
+        default:
+        //If none of the following cases were true, again, you'll exit this switch statement clause
+            console.log("\nYou should pick any number from 1 or 2!..");
+            break;
+    }
+}else{
+    //If you failed to supply any numbers from 1 to 5, you'll be reminded to enter any number from the given
+    //range of numbers allowed
+    console.log("Enter numbers from 1 to 5 only!..");
 }
+
+//You'll be asked if you would like to continue to generate quotes or not
 choice = prompt("If you don't want to generate any more quotes.. type \"stop\" else press \"enter\". ");
 }while(choice != "stop");
-
-    // switch(choice)
-    // {
-    //     case 1: 
-    //         console.log(tools.generateRandomQuote());
-    //         break;
-    //     case 2:
-    //         tools.generateNQuotes(2);
-    //         break;
-    //     default:
-    //         break;
-    // }
-
 
 
 
