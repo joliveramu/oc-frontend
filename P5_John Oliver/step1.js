@@ -28,7 +28,7 @@ let ending =[
     "bringing our hopes in the promise land",
     "building bridges to reach everyone",
     "forgiving those who deserves it",
-    "hearomg peoples concern so that we can make this better",
+    "hear amomg peoples concern so that we can make this better",
     "knowing what's best for the greater good",
     "making our dreams come true"
 ]

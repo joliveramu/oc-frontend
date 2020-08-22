@@ -22,20 +22,19 @@ let randomPlayer2 = Math.floor(Math.random() * randomPlayer1);
 
 //Generate numbers according to random number generated for Board and Tiles.
 let randomBoard = Math.floor(Math.random() * mapBoard.length);
-let randomTile = Math.floor(Math.random() * gameTiles.length);
-
+let randomTileP1 = Math.floor(Math.random() * gameTiles.length);
+let randomTileP2 = Math.floor(Math.random() * gameTiles.length);
 
 //onload function
 window.addEventListener("load", function(){
 
     //Initialize Player 1  
-    gameTiles[randomTile].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-    gameTiles[randomTile].style.backgroundRepeat = "no-repeat";
-
+    gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+    gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
      
     //Initialize Player 2
-    gameTiles[Math.floor((Math.random() * randomTile) / 2)].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-    gameTiles[Math.floor((Math.random() * randomTile) / 2)].style.backgroundRepeat = "no-repeat";
+    gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+    gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
        
     //Initialize weapons in random arrangement
     let weapon1 = Math.floor(Math.random() * gameTiles.length);
