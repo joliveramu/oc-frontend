@@ -1,38 +1,59 @@
-// let turn = 1;
-
-// function game(elem)
-// {
-//     if(turn == 1)
-//     {
-//         elem.innerHTML = "A";
-//         turn = 2;
-//     }else if(turn == 2)
-//     {
-//         elem.innerHTML = "B";
-//         turn = 1;
-//     }
-// }
-
+//Getting the table's #gameBoard id
 let gameBoard = document.getElementById('gameBoard');
+
+//Getting all the td's .game-tiles class
 let gameTiles = document.getElementsByClassName('game-tiles');
-//Map array
+
+//Map Level Array
 let mapBoard = ["map1","map2","map3","map4"];
-//This should be players
-let colors = ["red","blue"];
+
+//Players Array
+let players = ["c","basic"];
+
+//Weapons array
+let weapons = ["web","mobile","desktop","embedded"];
 
 // gameTiles[0].style.backgroundColor = 'blue';
 //random generation of background
 
-let randomBlocks = Math.floor(Math.random() * colors.length);
+//Random player 1 & 2 placement generation
+let randomPlayer1 = Math.floor(Math.random() * players.length);
+let randomPlayer2 = Math.floor(Math.random() * randomPlayer1);
+
+//Generate numbers according to random number generated for Board and Tiles.
 let randomBoard = Math.floor(Math.random() * mapBoard.length);
 let randomTile = Math.floor(Math.random() * gameTiles.length);
+
+
+//onload function
 window.addEventListener("load", function(){
-    for(var i = 0; i < 2; i++)
+
+    //Initialize Player 1  
+    gameTiles[randomTile].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+    gameTiles[randomTile].style.backgroundRepeat = "no-repeat";
+
+     
+    //Initialize Player 2
+    gameTiles[Math.floor((Math.random() * randomTile) / 2)].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+    gameTiles[Math.floor((Math.random() * randomTile) / 2)].style.backgroundRepeat = "no-repeat";
+       
+    //Initialize weapons in random arrangement
+    let weapon1 = Math.floor(Math.random() * gameTiles.length);
+    let weapon2 = Math.floor(Math.random() * gameTiles.length);
+    let weapon3 = Math.floor(Math.random() * gameTiles.length);
+    let weapon4 = Math.floor(Math.random() * gameTiles.length);
+    gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
+    gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
+    gameTiles[weapon3].style.backgroundImage = "url('assets/img/"+weapons[2]+".png')";
+    gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
+
+    //Display blocks in random area
+    for(var i = 0; i < 8; i++)
     {
-        gameTiles[randomTile].style.backgroundColor = colors[randomBlocks];
-        gameTiles[Math.floor(Math.random()*randomTile)].style.backgroundColor = colors[Math.floor(Math.random()*randomBlocks)];
+        gameTiles[Math.floor(Math.random() * gameTiles.length)].style.backgroundImage = "url('assets/img/blocks.png')";
     }
-  
+
+    //Initialize Map level
     gameBoard.style.backgroundImage = "url('assets/img/"+mapBoard[randomBoard]+".png')";
     gameBoard.style.backgroundRepeat = "no-repeat";
     gameBoard.style.backgroundSize = "cover";
