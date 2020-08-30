@@ -1,7 +1,7 @@
-table, th, td {
+/* table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
-  }
+  } */
 
   table {
     display: table;
@@ -11,9 +11,34 @@ table, th, td {
     width: 50%;
     height: 500px;
     margin: auto;
+    /* display: none; */
   }
 
   td:hover {
     background-color: #f5f5f5;
   }
   /* tr:nth-child(even) {background-color: #f2f2f2;} */
+
+ body{
+   background-color: #00adef;
+ }
+
+ #playersPanel {
+  display: inline;
+  margin: auto;
+ }
+
+ #player1, #player2{
+   margin: 0 auto;
+   background-color: white;
+   margin: auto;
+   padding: 10px;
+   font-family: arial;
+ }
+
+ #player1{
+  float: left;
+ }
+ #player2{
+  float: right;
+ }
