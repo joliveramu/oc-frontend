@@ -26,6 +26,24 @@ let randomTileP2 = Math.floor(Math.random() * gameTiles.length);
 //Player buttons
 let btnP1Attack = document.getElementById('btnP1Attack');
 let btnP2Attack = document.getElementById('btnP2Attack');
+
+//Player movements
+// P1
+let btnP1Left = document.getElementById('btnP1Left');
+let btnP1Up = document.getElementById('btnP1Up');
+let btnP1Right = document.getElementById('btnP1Right');
+let btnP1Down = document.getElementById('btnP1Down');
+
+// P2
+let btnP2Left = document.getElementById('btnP2Left');
+let btnP2Up = document.getElementById('btnP2Up');
+let btnP2Right = document.getElementById('btnP2Right');
+let btnP2Down = document.getElementById('btnP2Down');
+
+//P1 and P2 control panel
+let p1ActionPanel = document.getElementById('p1ActionPanel');
+let p2ActionPanel = document.getElementById('p2ActionPanel');
+
 //Player healthBar
 let p1 = 100;
 let p2 = 100;
@@ -35,6 +53,8 @@ let p2Health = document.getElementById('p2Health');
 //For game decision
 let gameDecision = document.getElementById('gameDecision');
 
+//Movement count
+let tileMovement = 0;
 function mapLoad()
 {
 
@@ -133,6 +153,7 @@ btnP1Attack.addEventListener('click',function(){
 
 btnP2Attack.addEventListener('click',function()
 {
+
     if(p1 !== 0)
     {
         p1 -= 10;
@@ -146,3 +167,209 @@ btnP2Attack.addEventListener('click',function()
         gameRestart();
     }
 })
+
+//Movements
+//Player 1
+
+p2ActionPanel.style.visibility = 'hidden';
+btnP1Left.addEventListener('click', function(){
+    
+    gameTiles[randomTileP1].style.backgroundImage = "none";
+    console.log(randomTileP1);
+    randomTileP1--;
+    if(gameTiles.length > randomTileP1 && randomTileP1 < 0)
+    {
+        alert("Cannot make any movement.");
+        randomTileP1 += 1;
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        console.log(randomTileP1);
+    }else{
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 2 should now move");
+            tileMovement = 0;
+            p2ActionPanel.style.visibility = 'visible';
+            p1ActionPanel.style.visibility = 'hidden';
+        }
+    }
+
+    
+});
+
+btnP1Up.addEventListener('click', function(){
+    gameTiles[randomTileP1].style.backgroundImage = "none";
+    console.log(randomTileP1);
+    randomTileP1 -= 12;
+    if(gameTiles.length > randomTileP1 && randomTileP1 < 0)
+    {
+        alert("P1 Cannot make any movement.");
+        randomTileP1 += 12;
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        console.log(randomTileP1);
+    }else{
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 2 should now move");
+            tileMovement = 0;
+            p2ActionPanel.style.visibility = 'visible';
+            p1ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+btnP1Right.addEventListener('click', function(){
+    gameTiles[randomTileP1].style.backgroundImage = "none";
+    console.log(randomTileP1);
+    randomTileP1++;
+    if(gameTiles.length <= randomTileP1)
+    {
+        alert("P1 Cannot make any movement.");
+        randomTileP1 -= 1;
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        console.log(randomTileP1);
+    }else{
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 2 should now move");
+            tileMovement = 0;
+            p2ActionPanel.style.visibility = 'visible';
+            p1ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+btnP1Down.addEventListener('click', function(){
+    gameTiles[randomTileP1].style.backgroundImage = "none";
+    console.log(randomTileP1);
+    randomTileP1 += 12;
+    if(gameTiles.length <= randomTileP1)
+    {
+        alert("P1 Cannot make any movement.");
+        randomTileP1 -= 12;
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        console.log(randomTileP1);
+    }else{
+        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 2 should now move");
+            tileMovement = 0;
+            p2ActionPanel.style.visibility = 'visible';
+            p1ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+//Player 2
+btnP2Left.addEventListener('click', function(){
+
+    gameTiles[randomTileP2].style.backgroundImage = "none";
+    console.log(randomTileP2);
+    randomTileP2--;
+    if(gameTiles.length > randomTileP2 && randomTileP2 < 0)
+    {
+        alert("P2 Cannot make any movement.");
+        randomTileP2 += 1;
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        console.log(randomTileP2);
+    }else{
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 1 should now move");
+            tileMovement = 0;
+            p1ActionPanel.style.visibility = 'visible';
+            p2ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+btnP2Up.addEventListener('click', function(){
+    gameTiles[randomTileP2].style.backgroundImage = "none";
+    console.log(randomTileP2);
+    randomTileP2 -= 12;
+    if(gameTiles.length > randomTileP2 && randomTileP2 < 0)
+    {
+        alert("P2 Cannot make any movement.");
+        randomTileP2 += 12;
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        console.log(randomTileP2);
+    }else{
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 1 should now move");
+            tileMovement = 0;
+            p1ActionPanel.style.visibility = 'visible';
+            p2ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+btnP2Right.addEventListener('click', function(){
+    gameTiles[randomTileP2].style.backgroundImage = "none";
+    console.log(randomTileP2);
+    randomTileP2++;
+    if(gameTiles.length <= randomTileP2)
+    {
+        alert("P2 Cannot make any movement.");
+        randomTileP2 -= 1;
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        console.log(randomTileP2);
+    }else{
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 1 should now move");
+            tileMovement = 0;
+            p1ActionPanel.style.visibility = 'visible';
+            p2ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
+
+btnP2Down.addEventListener('click', function(){
+    gameTiles[randomTileP2].style.backgroundImage = "none";
+    console.log(randomTileP2);
+    randomTileP2 += 12;
+    if(gameTiles.length <= randomTileP2)
+    {
+        alert("P2 Cannot make any movement.");
+        randomTileP2 -= 12;
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        console.log(randomTileP2);
+    }else{
+        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        
+        tileMovement++;
+        console.log(tileMovement);
+        if(tileMovement == 3)
+        {
+            alert("Player 1 should now move");
+            tileMovement = 0;
+            p1ActionPanel.style.visibility = 'visible';
+            p2ActionPanel.style.visibility = 'hidden';
+        }
+    }
+});
