@@ -13,9 +13,14 @@ let players = ["c","basic"];
 //Weapons array
 let weapons = ["web","mobile","desktop","embedded"];
 
+//Variables weapon1-4 initialization
+let weapon1, weapon2, weapon3, weapon4;
 
 //Tiles array checking
 let tileChecker = [];
+
+//Blocks array
+let blocksArray = [];
 
 //Generate numbers according to random number generated for Board and Tiles.
 let randomBoard = Math.floor(Math.random() * mapBoard.length);
@@ -71,14 +76,15 @@ function mapLoad()
              gameTiles[randomBlocks].style.backgroundImage = "url('assets/img/blocks.png')";
              gameTiles[randomBlocks].style.backgroundRepeat = "no-repeat";
              tileChecker.push(randomBlocks);
+             blocksArray.push(randomBlocks);
              console.log(randomBlocks);
          }   
            
         //Initialize weapons in random arrangement
-        let weapon1 = Math.floor(Math.random() * gameTiles.length);
-        let weapon2 = Math.floor(Math.random() * gameTiles.length);
-        let weapon3 = Math.floor(Math.random() * gameTiles.length);
-        let weapon4 = Math.floor(Math.random() * gameTiles.length);
+        weapon1 = Math.floor(Math.random() * gameTiles.length);
+        weapon2 = Math.floor(Math.random() * gameTiles.length);
+        weapon3 = Math.floor(Math.random() * gameTiles.length);
+        weapon4 = Math.floor(Math.random() * gameTiles.length);
         gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
         console.log(`Weapon 1: ${weapon1}`);
         tileChecker.push(weapon1);
@@ -100,12 +106,12 @@ function mapLoad()
         gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         console.log(`P1: ${randomTileP1}`);
         tileChecker.push(randomTileP1);
+
         //Initialize Player 2
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         console.log(`P2: ${randomTileP2}`);
         tileChecker.push(randomTileP2);
-
 }
 
 function gameRestart()
@@ -168,6 +174,8 @@ btnP2Attack.addEventListener('click',function()
     }
 })
 
+
+
 //Movements
 //Player 1
 
@@ -177,13 +185,38 @@ btnP1Left.addEventListener('click', function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     console.log(randomTileP1);
     randomTileP1--;
-    if(gameTiles.length > randomTileP1 && randomTileP1 < 0)
+
+    if((gameTiles.length > randomTileP1 && randomTileP1 < 0) || (blocksArray.includes(randomTileP1)))
     {
         alert("Cannot make any movement.");
-        randomTileP1 += 1;
+        randomTileP1++;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         console.log(randomTileP1);
+        
     }else{
+        switch(randomTileP1)
+        {
+            case weapon1:
+                alert("Player 1 health increased by 10.");
+                p1 += 10;
+                p1Health.textContent = p1;
+                break;
+            case weapon2:
+                alert("Player 1 health increased by 15.");
+                p1 += 15;
+                p1Health.textContent = p1;
+                break;
+            case weapon3:
+                alert("Player 1 health increased by 20.");
+                p1 += 20;
+                p1Health.textContent = p1;
+                break;
+            case weapon4:
+                alert("Player 1 health increased by 50.");
+                p1 += 50;
+                p1Health.textContent = p1;
+                break;
+        }
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         tileMovement++;
         console.log(tileMovement);
@@ -195,21 +228,42 @@ btnP1Left.addEventListener('click', function(){
             p1ActionPanel.style.visibility = 'hidden';
         }
     }
-
-    
 });
 
 btnP1Up.addEventListener('click', function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     console.log(randomTileP1);
     randomTileP1 -= 12;
-    if(gameTiles.length > randomTileP1 && randomTileP1 < 0)
+    if((gameTiles.length > randomTileP1 && randomTileP1 < 0) || blocksArray.includes(randomTileP1))
     {
         alert("P1 Cannot make any movement.");
         randomTileP1 += 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         console.log(randomTileP1);
     }else{
+        switch(randomTileP1)
+        {
+            case weapon1:
+                alert("Player 1 health increased by 10.");
+                p1 += 10;
+                p1Health.textContent = p1;
+                break;
+            case weapon2:
+                alert("Player 1 health increased by 15.");
+                p1 += 15;
+                p1Health.textContent = p1;
+                break;
+            case weapon3:
+                alert("Player 1 health increased by 20.");
+                p1 += 20;
+                p1Health.textContent = p1;
+                break;
+            case weapon4:
+                alert("Player 1 health increased by 50.");
+                p1 += 50;
+                p1Health.textContent = p1;
+                break;
+        }
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         tileMovement++;
         console.log(tileMovement);
@@ -227,13 +281,36 @@ btnP1Right.addEventListener('click', function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     console.log(randomTileP1);
     randomTileP1++;
-    if(gameTiles.length <= randomTileP1)
+    if((gameTiles.length <= randomTileP1) || blocksArray.includes(randomTileP1))
     {
         alert("P1 Cannot make any movement.");
-        randomTileP1 -= 1;
+        randomTileP1--;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         console.log(randomTileP1);
     }else{
+        switch(randomTileP1)
+        {
+            case weapon1:
+                alert("Player 1 health increased by 10.");
+                p1 += 10;
+                p1Health.textContent = p1;
+                break;
+            case weapon2:
+                alert("Player 1 health increased by 15.");
+                p1 += 15;
+                p1Health.textContent = p1;
+                break;
+            case weapon3:
+                alert("Player 1 health increased by 20.");
+                p1 += 20;
+                p1Health.textContent = p1;
+                break;
+            case weapon4:
+                alert("Player 1 health increased by 50.");
+                p1 += 50;
+                p1Health.textContent = p1;
+                break;
+        }
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         
         tileMovement++;
@@ -252,13 +329,36 @@ btnP1Down.addEventListener('click', function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     console.log(randomTileP1);
     randomTileP1 += 12;
-    if(gameTiles.length <= randomTileP1)
+    if((gameTiles.length <= randomTileP1) || blocksArray.includes(randomTileP1))
     {
         alert("P1 Cannot make any movement.");
         randomTileP1 -= 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         console.log(randomTileP1);
     }else{
+        switch(randomTileP1)
+        {
+            case weapon1:
+                alert("Player 1 health increased by 10.");
+                p1 += 10;
+                p1Health.textContent = p1;
+                break;
+            case weapon2:
+                alert("Player 1 health increased by 15.");
+                p1 += 15;
+                p1Health.textContent = p1;
+                break;
+            case weapon3:
+                alert("Player 1 health increased by 20.");
+                p1 += 20;
+                p1Health.textContent = p1;
+                break;
+            case weapon4:
+                alert("Player 1 health increased by 50.");
+                p1 += 50;
+                p1Health.textContent = p1;
+                break;
+        }
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         tileMovement++;
         console.log(tileMovement);
@@ -278,15 +378,37 @@ btnP2Left.addEventListener('click', function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     console.log(randomTileP2);
     randomTileP2--;
-    if(gameTiles.length > randomTileP2 && randomTileP2 < 0)
+    if((gameTiles.length > randomTileP2 && randomTileP2 < 0) || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
-        randomTileP2 += 1;
+        randomTileP2++;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
     }else{
+        switch(randomTileP2)
+        {
+            case weapon1:
+                alert("Player 2 health increased by 10.");
+                p2 += 10;
+                p2Health.textContent = p2;
+                break;
+            case weapon2:
+                alert("Player 2 health increased by 15.");
+                p2 += 15;
+                p2Health.textContent = p2;
+                break;
+            case weapon3:
+                alert("Player 2 health increased by 20.");
+                p2 += 20;
+                p2Health.textContent = p2;
+                break;
+            case weapon4:
+                alert("Player 2 health increased by 50.");
+                p2 += 50;
+                p2Health.textContent = p2;
+                break;
+        }
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-
         tileMovement++;
         console.log(tileMovement);
         if(tileMovement == 3)
@@ -303,15 +425,37 @@ btnP2Up.addEventListener('click', function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     console.log(randomTileP2);
     randomTileP2 -= 12;
-    if(gameTiles.length > randomTileP2 && randomTileP2 < 0)
+    if((gameTiles.length > randomTileP2 && randomTileP2 < 0) || blocksArray.includes(randomTileP2) )
     {
         alert("P2 Cannot make any movement.");
         randomTileP2 += 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
     }else{
+        switch(randomTileP2)
+        {
+            case weapon1:
+                alert("Player 2 health increased by 10.");
+                p2 += 10;
+                p2Health.textContent = p2;
+                break;
+            case weapon2:
+                alert("Player 2 health increased by 15.");
+                p2 += 15;
+                p2Health.textContent = p2;
+                break;
+            case weapon3:
+                alert("Player 2 health increased by 20.");
+                p2 += 20;
+                p2Health.textContent = p2;
+                break;
+            case weapon4:
+                alert("Player 2 health increased by 50.");
+                p2 += 50;
+                p2Health.textContent = p2;
+                break;
+        }
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        
         tileMovement++;
         console.log(tileMovement);
         if(tileMovement == 3)
@@ -328,15 +472,37 @@ btnP2Right.addEventListener('click', function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     console.log(randomTileP2);
     randomTileP2++;
-    if(gameTiles.length <= randomTileP2)
+    if((gameTiles.length <= randomTileP2) || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
-        randomTileP2 -= 1;
+        randomTileP2--;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
     }else{
+        switch(randomTileP2)
+        {
+            case weapon1:
+                alert("Player 2 health increased by 10.");
+                p2 += 10;
+                p2Health.textContent = p2;
+                break;
+            case weapon2:
+                alert("Player 2 health increased by 15.");
+                p2 += 15;
+                p2Health.textContent = p2;
+                break;
+            case weapon3:
+                alert("Player 2 health increased by 20.");
+                p2 += 20;
+                p2Health.textContent = p2;
+                break;
+            case weapon4:
+                alert("Player 2 health increased by 50.");
+                p2 += 50;
+                p2Health.textContent = p2;
+                break;
+        }
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        
         tileMovement++;
         console.log(tileMovement);
         if(tileMovement == 3)
@@ -353,18 +519,40 @@ btnP2Down.addEventListener('click', function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     console.log(randomTileP2);
     randomTileP2 += 12;
-    if(gameTiles.length <= randomTileP2)
+    if((gameTiles.length <= randomTileP2) || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
         randomTileP2 -= 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
     }else{
+        switch(randomTileP2)
+        {
+            case weapon1:
+                alert("Player 2 health increased by 10.");
+                p2 += 10;
+                p2Health.textContent = p2;
+                break;
+            case weapon2:
+                alert("Player 2 health increased by 15.");
+                p2 += 15;
+                p2Health.textContent = p2;
+                break;
+            case weapon3:
+                alert("Player 2 health increased by 20.");
+                p2 += 20;
+                p2Health.textContent = p2;
+                break;
+            case weapon4:
+                alert("Player 2 health increased by 50.");
+                p2 += 50;
+                p2Health.textContent = p2;
+                break;
+        }
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        
         tileMovement++;
         console.log(tileMovement);
-        if(tileMovement == 3)
+        if(tileMovement == 3)   
         {
             alert("Player 1 should now move");
             tileMovement = 0;
