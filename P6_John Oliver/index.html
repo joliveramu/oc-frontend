@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-    <!-- flexbox
-css-grid
-randomly generate -->
-
       <div id = "playersPanel">
         <div id = "player1">
             <h1>Player1</h1>
@@ -20,8 +16,12 @@ randomly generate -->
             Health:
             <h2 id = "p1Health">100</h2>
             <div id = "p1ActionPanel">
-            <button id = "btnP1Attack">Attack Player 2</button>
-            <button id = "btnP1Defend">Defend</button>
+            <!-- Player 1 Attack panel -->
+            <div id = "p1AttackPanel">
+                <button id = "btnP1Attack">Attack Player 2</button>
+                <button id = "btnP1Defend">Defend</button>
+            </div>
+            
             <br/>
                 <h2>Movement</h2>
                 <hr>
@@ -31,6 +31,7 @@ randomly generate -->
                 <button id="btnP1Down">Down</button>
             </div>  
         </div>
+
         <div id = "player2">
             <h1>Player 2</h1>
             <hr/>
@@ -39,8 +40,12 @@ randomly generate -->
             Health:
             <h2 id = "p2Health">100</h2>
             <div id = "p2ActionPanel">
-            <button id = "btnP2Attack">Attack Player 1</button>
-            <button id = "btnP2Defend">Defend</button>
+            <!-- Player 2 Attack Panel -->
+            <div id = "p2AttackPanel">
+                <button id = "btnP2Attack">Attack Player 1</button>
+                <button id = "btnP2Defend">Defend</button>
+            </div>
+            
                 <h2>Movement</h2>
                 <hr>
                 <button id="btnP2Left">Left</button>
@@ -200,5 +205,6 @@ randomly generate -->
    
     <script src="assets/js/jquery-3.5.1.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/playerInteraction.js"></script>
 </body>
 </html>
