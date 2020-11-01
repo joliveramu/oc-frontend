@@ -4,10 +4,6 @@ let p1Attack = 10;
 let p2Attack = 10;
 let p1Defense = false;
 let p2Defense = false;
-//Check if all tile placement does not repeat on the array
-function checkIfArrayIsUnique(myArray) {
-    return myArray.length === new Set(myArray).size;
-}
 
 //Check P1 Tile touches the weapons' tiles.
 function p1WeaponsChecker(p1Tile)
@@ -139,7 +135,6 @@ function p2WeaponsChecker(p2Tile)
             if(weapon4Access)
             {
                 weapon4Access = false;
-                alert("Player 2 health increased by 50.");
                 p2Attack = 10;
                 p2Attack += 50;
                 weapon1Access = true;
@@ -162,8 +157,7 @@ $('#btnP1Attack').click(function(){
                 console.log(p2Defense);
                 if(p2Defense)
                 {
-                    p1Attack /= 2;
-                    p2 -= p1Attack;
+                    p2 -= p1Attack * 0.5;
                     p2Health.textContent = p2;
                     p1AttackPanel.style.visibility = "hidden";
                     player2.style.visibility = "visible";
@@ -214,9 +208,9 @@ $('#btnP2Attack').click(function(){
             console.log(p1Defense);
             if(p1Defense)
             {
-                p2Attack /= 2;
+                // p2Attack /= 2;
                 console.log(`P1 health is: ${p1}`);
-                p1 -= p2Attack;
+                p1 -= p2Attack * 0.5;
                 p1Health.textContent = p1;
                 p2AttackPanel.style.visibility = "hidden";
                 player1.style.visibility = "visible";
@@ -268,14 +262,15 @@ $('#btnP1Left').click(function(){
         alert("Cannot make any movement.");
         randomTileP1++;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
         
-    }else if(randomTileP1 === randomTileP2)
+    }else if(randomTileP1 === (randomTileP2 + 2))
     {
         alert("Engaging enemy P2");
-        randomTileP1++;
+        // randomTileP1++;
+        randomTileP1--;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
         p1ActionPanel.style.visibility = "visible";
         p1AttackPanel.style.visibility = "visible";
         player1Actions.style.visibility = "hidden";
@@ -286,7 +281,7 @@ $('#btnP1Left').click(function(){
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
         {
             alert("Player 2 should now move");
@@ -310,13 +305,14 @@ $('#btnP1Right').click(function(){
         alert("P1 Cannot make any movement.");
         randomTileP1--;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
-    }else if(randomTileP1 === randomTileP2)
+        console.log(`Player 1 @ ${randomTileP1}`);
+    }else if(randomTileP1 === (randomTileP2 - 2))
     {
             alert("Engaging enemy P2");
-            randomTileP1--;
+            // randomTileP1--;
+            randomTileP1++;
             gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-            console.log(randomTileP1);
+            console.log(`Player 1 @ ${randomTileP1}`);
             p1ActionPanel.style.visibility = "visible";
             p1AttackPanel.style.visibility = "visible";
             player1Actions.style.visibility = "hidden";
@@ -350,14 +346,15 @@ $('#btnP1Up').click(function(){
         alert("P1 Cannot make any movement.");
         randomTileP1 += 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
        
-    }else if(randomTileP1 === randomTileP2)
+    }else if(randomTileP1 === (randomTileP2 + 12))
     {
-            alert("Engaging enemy P2");
-            randomTileP1 += 12;
+        alert("Engaging enemy P2");
+        // randomTileP1 += 12;
+        // randomTileP1 -= 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
         p1ActionPanel.style.visibility = "visible";
         p1AttackPanel.style.visibility = "visible";
         player1Actions.style.visibility = "hidden";
@@ -367,7 +364,7 @@ $('#btnP1Up').click(function(){
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
         {
             alert("Player 2 should now move");
@@ -391,14 +388,13 @@ $('#btnP1Down').click(function(){
         alert("P1 Cannot make any movement.");
         randomTileP1 -= 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
        
-    }else if(randomTileP1 === randomTileP2)
+    }else if(randomTileP1 === (randomTileP2 - 12))
     {
-            alert("Engaging enemy P2");
-            randomTileP1 -= 12;
+        alert("Engaging enemy P2");
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        console.log(randomTileP1);
+        console.log(`Player 1 @ ${randomTileP1}`);
         p1ActionPanel.style.visibility = "visible";
         p1AttackPanel.style.visibility = "visible";
         player1Actions.style.visibility = "hidden";
@@ -408,7 +404,7 @@ $('#btnP1Down').click(function(){
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
         gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
         {
             alert("Player 2 should now move");
@@ -435,9 +431,10 @@ $('#btnP2Left').click(function(){
         randomTileP2++;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
-    }else if (randomTileP2 === randomTileP1){
+    }else if (randomTileP2 === (randomTileP1 + 2)){
         alert("Engaging P1");
-        randomTileP2++;
+        // randomTileP2++;
+        randomTileP2--;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
         p2ActionPanel.style.visibility = "visible";
@@ -473,9 +470,9 @@ $('#btnP2Right').click(function(){
         randomTileP2--;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
-    }else if (randomTileP2 === randomTileP1){
+    }else if (randomTileP2 === (randomTileP1 - 2)){
         alert("Engaging P1");
-        randomTileP2--;
+        randomTileP2++;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
         p2ActionPanel.style.visibility = "visible";
@@ -511,9 +508,9 @@ $('#btnP2Up').click(function(){
         randomTileP2 += 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
-    }else if (randomTileP2 === randomTileP1){
+    }else if (randomTileP2 === (randomTileP1 + 12)){
         alert("Engaging P1");
-        randomTileP2 += 12;
+        // randomTileP2 += 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
         p2ActionPanel.style.visibility = "visible";
@@ -549,9 +546,9 @@ $('#btnP2Down').click(function(){
         randomTileP2 -= 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
-    }else if (randomTileP2 === randomTileP1){
+    }else if (randomTileP2 === (randomTileP1 - 12)){
         alert("Engaging P1");
-        randomTileP2 -= 12;
+        // randomTileP2 -= 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         console.log(randomTileP2);
         p2ActionPanel.style.visibility = "visible";

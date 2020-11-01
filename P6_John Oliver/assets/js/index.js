@@ -116,9 +116,11 @@ function gameRestart()
     }
 }
 
+//Check if all tile placement does not repeat on the array
 function checkIfArrayIsUnique(myArray) {
     return myArray.length === new Set(myArray).size;
 }
+
 
 // //onload function
 window.addEventListener("load",function(){
