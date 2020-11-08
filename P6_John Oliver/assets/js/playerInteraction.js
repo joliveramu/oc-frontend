@@ -1,9 +1,9 @@
 //Player movements
 
-let p1Attack = 10;
-let p2Attack = 10;
-let p1Defense = false;
-let p2Defense = false;
+// let p1Attack = 10;
+// let p2Attack = 10;
+// let p1Defense = false;
+// let p2Defense = false;
 
 //Check P1 Tile touches the weapons' tiles.
 function p1WeaponsChecker(p1Tile)
@@ -14,8 +14,8 @@ function p1WeaponsChecker(p1Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                p1Attack = 10;
-                p1Attack += 10;
+                p1.attackPoint = 10;
+                p1.attackPoint += 10;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
                 weapon3Access = true;
@@ -23,15 +23,15 @@ function p1WeaponsChecker(p1Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack +10");
-                console.log(`Player 1 Attack is: ${p1Attack}`);
+                console.log(`Player 1 Attack is: ${p1.attackPoint}`);
             }
             break;
         case weapon2:
             if(weapon2Access)
             {
                 weapon2Access = false;
-                p1Attack = 10;
-                p1Attack += 15;
+                p1.attackPoint = 10;
+                p1.attackPoint += 15;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon3Access = true;
@@ -39,15 +39,15 @@ function p1WeaponsChecker(p1Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack +15");
-                console.log(`Player 1 Attack is: ${p1Attack}`);
+                console.log(`Player 1 Attack is: ${p1.attackPoint}`);
             }
             break;
         case weapon3:
             if(weapon3Access)
             {
                 weapon3Access = false;
-                p1Attack = 10;
-                p1Attack += 20;
+                p1.attackPoint = 10;
+                p1.attackPoint += 20;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -55,15 +55,15 @@ function p1WeaponsChecker(p1Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack +20");
-                console.log(`Player 1 Attack is: ${p1Attack}`);
+                console.log(`Player 1 Attack is: ${p1.attackPoint}`);
             }
             break;
         case weapon4:
             if(weapon4Access)
             {
                 weapon4Access = false;
-                p1Attack = 10;
-                p1Attack += 50;
+                p1.attackPoint = 10;
+                p1.attackPoint += 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -71,7 +71,7 @@ function p1WeaponsChecker(p1Tile)
                 weapon3Access = true;
                 gameTiles[weapon3].style.backgroundImage = "url('assets/img/"+weapons[2]+".png')";
                 alert("P1 Attack +50");
-                console.log(`Player 1 Attack is: ${p1Attack}`);
+                console.log(`Player 1 Attack is: ${p1.attackPoint}`);
             }
             break;
         default:
@@ -87,8 +87,8 @@ function p2WeaponsChecker(p2Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                p2Attack = 10;
-                p2Attack += 10;
+                p2.attackPoint = 10;
+                p2.attackPoint += 10;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
                 weapon3Access = true;
@@ -96,15 +96,15 @@ function p2WeaponsChecker(p2Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack +10");
-                console.log(`Player 2 Attack is: ${p2Attack}`);
+                console.log(`Player 2 Attack is: ${p2.attackPoint}`);
             }
             break;
         case weapon2:
             if(weapon2Access)
             {
                 weapon2Access = false;
-                p2Attack = 10;
-                p2Attack += 15;
+                p2.attackPoint = 10;
+                p2.attackPoint += 15;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon3Access = true;
@@ -112,15 +112,15 @@ function p2WeaponsChecker(p2Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack +15");
-                console.log(`Player 2 Attack is: ${p2Attack}`);
+                console.log(`Player 2 Attack is: ${p2.attackPoint}`);
             }
             break;
         case weapon3:
             if(weapon3Access)
             {
                 weapon3Access = false;
-                p2Attack = 10;
-                p2Attack += 20;
+                p2.attackPoint = 10;
+                p2.attackPoint += 20;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -128,15 +128,15 @@ function p2WeaponsChecker(p2Tile)
                 weapon4Access = true;
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack +20");
-                console.log(`Player 2 Attack is: ${p2Attack}`);
+                console.log(`Player 2 Attack is: ${p2.attackPoint}`);
             }
             break;
         case weapon4:
             if(weapon4Access)
             {
                 weapon4Access = false;
-                p2Attack = 10;
-                p2Attack += 50;
+                p2.attackPoint = 10;
+                p2.attackPoint += 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -144,7 +144,7 @@ function p2WeaponsChecker(p2Tile)
                 weapon3Access = true;
                 gameTiles[weapon3].style.backgroundImage = "url('assets/img/"+weapons[2]+".png')";
                 alert("P1 Attack +50");
-                console.log(`Player 2 Attack is: ${p2Attack}`);
+                console.log(`Player 2 Attack is: ${p2.attackPoint}`);
             }
             break;
         default:
@@ -152,30 +152,44 @@ function p2WeaponsChecker(p2Tile)
     }
 }
 
+var p1PanelVisibility = () => 
+{
+    p2AttackPanel.style.visibility = "hidden";
+    player1.style.visibility = "visible";
+    p1AttackPanel.style.visibility = "visible";
+}
+  
+
+var p2PanelVisibility = () => 
+{
+    p1AttackPanel.style.visibility = "hidden";
+    player2.style.visibility = "visible";
+    p2AttackPanel.style.visibility = "visible";
+}
+
+  
+
+
 $('#btnP1Attack').click(function(){
            
-                console.log(p2Defense);
-                if(p2Defense)
+                console.log(p2.defense);
+                if(p2.defense)
                 {
-                    p2 -= p1Attack * 0.5;
-                    p2Health.textContent = p2;
-                    p1AttackPanel.style.visibility = "hidden";
-                    player2.style.visibility = "visible";
-                    p2AttackPanel.style.visibility = "visible";
-                    console.log(`P2 health is: ${p2}`);
-                    p2Defense = false;
+                    p2.health -= p1.attackPoint * 0.5;
+                    p2Health.textContent = p2.health;
+                    p2PanelVisibility();
+                    console.log(`P2 health is: ${p2.health}`);
+                    p2.defense = false;
                 }else{
-                    p2 -= p1Attack;
-                    p2Health.textContent = p2;
-                    p1AttackPanel.style.visibility = "hidden";
-                    player2.style.visibility = "visible";
-                    p2AttackPanel.style.visibility = "visible";
-                    console.log(`P2 health is: ${p2}`);
+                    p2.health -= p1.attackPoint;
+                    p2Health.textContent = p2.health;
+                    p2PanelVisibility();
+                    console.log(`P2 health is: ${p2.health}`);
                 }
                
                 
             
-                if(p2 <= 0)
+                if(p2.health <= 0)
                 {
                     alert("Player 1 Wins!");
                     gameDecision.style.textAlign = "center";
@@ -190,45 +204,36 @@ $('#btnP1Attack').click(function(){
 });
 
 $('#btnP1Defend').click(function(){
-    p1Defense = true;
-    p1AttackPanel.style.visibility = "hidden";
-    player2.style.visibility = "visible";
-    p2AttackPanel.style.visibility = "visible";
+    p1.defense = true;
+    p2PanelVisibility();
 });
 
 $('#btnP2Defend').click(function(){
-    p2Defense = true;
-    p2AttackPanel.style.visibility = "hidden";
-    player1.style.visibility = "visible";
-    p1AttackPanel.style.visibility = "visible";
+    p2.defense = true;
+    p1PanelVisibility();
 });
 
 $('#btnP2Attack').click(function(){
         
-            console.log(p1Defense);
-            if(p1Defense)
+            console.log(p1.defense);
+            if(p1.defense)
             {
-                // p2Attack /= 2;
-                console.log(`P1 health is: ${p1}`);
-                p1 -= p2Attack * 0.5;
-                p1Health.textContent = p1;
-                p2AttackPanel.style.visibility = "hidden";
-                player1.style.visibility = "visible";
-                p1AttackPanel.style.visibility = "visible";
-                console.log(`P1 health is: ${p1}`);
-                p1Defense = false;
+                console.log(`P1 health is: ${p1.health}`);
+                p1.health -= p2.attackPoint * 0.5;
+                p1Health.textContent = p1.health;
+                p1PanelVisibility();
+                console.log(`P1 health is: ${p1.health}`);
+                p1.defense = false;
             }else{
-                console.log(`P1 health is: ${p1}`);
-                p1 -= p2Attack;
-                p1Health.textContent = p1;
-                p2AttackPanel.style.visibility = "hidden";
-                player1.style.visibility = "visible";
-                p1AttackPanel.style.visibility = "visible";
-                console.log(`P1 health is: ${p1}`);
+                console.log(`P1 health is: ${p1.health}`);
+                p1.health -= p2.attackPoint;
+                p1Health.textContent = p1.health;
+                p1PanelVisibility();
+                console.log(`P1 health is: ${p1.health}`);
             }
             
             
-            if(p1 <= 0)
+            if(p1.health <= 0)
             {
                 alert("Player 2 Wins!");
                 gameDecision.style.textAlign = "center";
@@ -241,7 +246,33 @@ $('#btnP2Attack').click(function(){
            
 });
 
+let p2Visibility = () =>
+{
+    player1.style.visibility = "hidden";
+    player2.style.visibility = "visible";
+}
 
+let p1Visibility = () =>
+{
+    player1.style.visibility = "visible";
+    player2.style.visibility = "hidden";
+}
+
+let p1EngageVisibility = () =>
+{
+    p1ActionPanel.style.visibility = "visible";
+    p1AttackPanel.style.visibility = "visible";
+    player1Actions.style.visibility = "hidden";
+    player2Actions.style.visibility = "hidden";
+}
+
+let p2EngageVisibility = () =>
+{
+    p2ActionPanel.style.visibility = "visible";
+    p2AttackPanel.style.visibility = "visible";
+    player1Actions.style.visibility = "hidden";
+    player2Actions.style.visibility = "hidden";
+}
 
 //Movements
 //Player 1
@@ -270,12 +301,9 @@ $('#btnP1Left').click(function(){
         // randomTileP1++;
         randomTileP1--;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         console.log(`Player 1 @ ${randomTileP1}`);
-        p1ActionPanel.style.visibility = "visible";
-        p1AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
-        
+        p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
@@ -286,10 +314,7 @@ $('#btnP1Left').click(function(){
         {
             alert("Player 2 should now move");
             tileMovement = 0;
-            // p2ActionPanel.style.visibility = 'visible';
-            // p1ActionPanel.style.visibility = 'hidden';
-            player2.style.visibility = "visible";
-            player1.style.visibility = "hidden";
+            p2Visibility();
         }
     }
 });
@@ -312,11 +337,9 @@ $('#btnP1Right').click(function(){
             // randomTileP1--;
             randomTileP1++;
             gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+            gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
             console.log(`Player 1 @ ${randomTileP1}`);
-            p1ActionPanel.style.visibility = "visible";
-            p1AttackPanel.style.visibility = "visible";
-            player1Actions.style.visibility = "hidden";
-            player2Actions.style.visibility = "hidden";
+            p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
@@ -327,10 +350,7 @@ $('#btnP1Right').click(function(){
         {
             alert("Player 2 should now move");
             tileMovement = 0;
-            // p2ActionPanel.style.visibility = 'visible';
-            // p1ActionPanel.style.visibility = 'hidden';
-            player2.style.visibility = "visible";
-            player1.style.visibility = "hidden";
+            p2Visibility();
         }
     }
 });
@@ -354,11 +374,9 @@ $('#btnP1Up').click(function(){
         // randomTileP1 += 12;
         // randomTileP1 -= 12;
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         console.log(`Player 1 @ ${randomTileP1}`);
-        p1ActionPanel.style.visibility = "visible";
-        p1AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
@@ -369,10 +387,7 @@ $('#btnP1Up').click(function(){
         {
             alert("Player 2 should now move");
             tileMovement = 0;
-            // p2ActionPanel.style.visibility = 'visible';
-            // p1ActionPanel.style.visibility = 'hidden';
-            player2.style.visibility = "visible";
-            player1.style.visibility = "hidden";
+            p2Visibility();
         }
     }
 });
@@ -394,11 +409,9 @@ $('#btnP1Down').click(function(){
     {
         alert("Engaging enemy P2");
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
         console.log(`Player 1 @ ${randomTileP1}`);
-        p1ActionPanel.style.visibility = "visible";
-        p1AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
         gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
@@ -409,10 +422,7 @@ $('#btnP1Down').click(function(){
         {
             alert("Player 2 should now move");
             tileMovement = 0;
-            // p2ActionPanel.style.visibility = 'visible';
-            // p1ActionPanel.style.visibility = 'hidden';
-            player2.style.visibility = "visible";
-            player1.style.visibility = "hidden";
+            p2Visibility();
         }
     }
 });
@@ -436,11 +446,9 @@ $('#btnP2Left').click(function(){
         // randomTileP2++;
         randomTileP2--;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         console.log(randomTileP2);
-        p2ActionPanel.style.visibility = "visible";
-        p2AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
@@ -451,10 +459,7 @@ $('#btnP2Left').click(function(){
         {
             alert("Player 1 should now move");
             tileMovement = 0;
-            // p1ActionPanel.style.visibility = 'visible';
-            // p2ActionPanel.style.visibility = 'hidden';
-            player1.style.visibility = "visible";
-            player2.style.visibility = "hidden";
+            p1Visibility();
         }
     }
 });
@@ -474,11 +479,9 @@ $('#btnP2Right').click(function(){
         alert("Engaging P1");
         randomTileP2++;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         console.log(randomTileP2);
-        p2ActionPanel.style.visibility = "visible";
-        p2AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
@@ -489,10 +492,7 @@ $('#btnP2Right').click(function(){
         {
             alert("Player 1 should now move");
             tileMovement = 0;
-            // p1ActionPanel.style.visibility = 'visible';
-            // p2ActionPanel.style.visibility = 'hidden';
-            player1.style.visibility = "visible";
-            player2.style.visibility = "hidden";
+            p1Visibility();
         }
     }
 });
@@ -512,11 +512,9 @@ $('#btnP2Up').click(function(){
         alert("Engaging P1");
         // randomTileP2 += 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         console.log(randomTileP2);
-        p2ActionPanel.style.visibility = "visible";
-        p2AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
@@ -527,10 +525,7 @@ $('#btnP2Up').click(function(){
         {
             alert("Player 1 should now move");
             tileMovement = 0;
-            // p1ActionPanel.style.visibility = 'visible';
-            // p2ActionPanel.style.visibility = 'hidden';
-            player1.style.visibility = "visible";
-            player2.style.visibility = "hidden";
+            p1Visibility();
         }
     }
 });
@@ -550,11 +545,9 @@ $('#btnP2Down').click(function(){
         alert("Engaging P1");
         // randomTileP2 -= 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         console.log(randomTileP2);
-        p2ActionPanel.style.visibility = "visible";
-        p2AttackPanel.style.visibility = "visible";
-        player1Actions.style.visibility = "hidden";
-        player2Actions.style.visibility = "hidden";
+        p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
@@ -565,10 +558,7 @@ $('#btnP2Down').click(function(){
         {
             alert("Player 1 should now move");
             tileMovement = 0;
-            // p1ActionPanel.style.visibility = 'visible';
-            // p2ActionPanel.style.visibility = 'hidden';
-            player1.style.visibility = "visible";
-            player2.style.visibility = "hidden";
+            p1Visibility();
         }
     }
 });

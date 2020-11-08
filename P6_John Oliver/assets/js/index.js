@@ -38,9 +38,20 @@ let randomTileP2 = Math.floor(Math.random() * gameTiles.length);
 let p1ActionPanel = document.getElementById('p1ActionPanel');
 let p2ActionPanel = document.getElementById('p2ActionPanel');
 
-//Player healthBar
-let p1 = 100;
-let p2 = 100;
+//Player initial status settings
+let p1 = {
+    health: 100,
+    attackPoint: 10,
+    defense: false
+};
+
+let p2 = {
+    health: 100,
+    attackPoint: 10,
+    defense: false
+};
+
+
 let p1Health = document.getElementById('p1Health');
 let p2Health = document.getElementById('p2Health');
 
