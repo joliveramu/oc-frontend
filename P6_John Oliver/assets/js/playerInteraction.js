@@ -1,10 +1,5 @@
 //Player movements
 
-// let p1Attack = 10;
-// let p2Attack = 10;
-// let p1Defense = false;
-// let p2Defense = false;
-
 //Check P1 Tile touches the weapons' tiles.
 function p1WeaponsChecker(p1Tile)
 {
@@ -14,8 +9,8 @@ function p1WeaponsChecker(p1Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                p1.attackPoint = 10;
-                p1.attackPoint += 10;
+                // p1.attackPoint = 10;
+                p1.attackPoint = 20;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
                 weapon3Access = true;
@@ -30,8 +25,8 @@ function p1WeaponsChecker(p1Tile)
             if(weapon2Access)
             {
                 weapon2Access = false;
-                p1.attackPoint = 10;
-                p1.attackPoint += 15;
+                // p1.attackPoint = 10;
+                p1.attackPoint = 30;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon3Access = true;
@@ -46,8 +41,8 @@ function p1WeaponsChecker(p1Tile)
             if(weapon3Access)
             {
                 weapon3Access = false;
-                p1.attackPoint = 10;
-                p1.attackPoint += 20;
+                // p1.attackPoint = 10;
+                p1.attackPoint = 40;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -62,8 +57,8 @@ function p1WeaponsChecker(p1Tile)
             if(weapon4Access)
             {
                 weapon4Access = false;
-                p1.attackPoint = 10;
-                p1.attackPoint += 50;
+                // p1.attackPoint = 10;
+                p1.attackPoint = 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -87,8 +82,8 @@ function p2WeaponsChecker(p2Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                p2.attackPoint = 10;
-                p2.attackPoint += 10;
+                // p2.attackPoint = 10;
+                p2.attackPoint = 20;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
                 weapon3Access = true;
@@ -103,8 +98,8 @@ function p2WeaponsChecker(p2Tile)
             if(weapon2Access)
             {
                 weapon2Access = false;
-                p2.attackPoint = 10;
-                p2.attackPoint += 15;
+                // p2.attackPoint = 10;
+                p2.attackPoint = 30;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon3Access = true;
@@ -119,8 +114,8 @@ function p2WeaponsChecker(p2Tile)
             if(weapon3Access)
             {
                 weapon3Access = false;
-                p2.attackPoint = 10;
-                p2.attackPoint += 20;
+                // p2.attackPoint = 10;
+                p2.attackPoint = 40;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -135,8 +130,8 @@ function p2WeaponsChecker(p2Tile)
             if(weapon4Access)
             {
                 weapon4Access = false;
-                p2.attackPoint = 10;
-                p2.attackPoint += 50;
+                // p2.attackPoint = 10;
+                p2.attackPoint = 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
                 weapon2Access = true;
@@ -176,18 +171,19 @@ $('#btnP1Attack').click(function(){
                 if(p2.defense)
                 {
                     p2.health -= p1.attackPoint * 0.5;
-                    p2Health.textContent = p2.health;
+                    // p2Health.textContent = p2.health;
+                    p2Health.textContent -= p1.attackPoint * 0.5;
                     p2PanelVisibility();
                     console.log(`P2 health is: ${p2.health}`);
                     p2.defense = false;
                 }else{
+                    // p2.health -= p1.attackPoint;
                     p2.health -= p1.attackPoint;
-                    p2Health.textContent = p2.health;
                     p2PanelVisibility();
                     console.log(`P2 health is: ${p2.health}`);
                 }
                
-                
+                p2Health.textContent = p2.health;
             
                 if(p2.health <= 0)
                 {
@@ -220,18 +216,16 @@ $('#btnP2Attack').click(function(){
             {
                 console.log(`P1 health is: ${p1.health}`);
                 p1.health -= p2.attackPoint * 0.5;
-                p1Health.textContent = p1.health;
                 p1PanelVisibility();
                 console.log(`P1 health is: ${p1.health}`);
                 p1.defense = false;
             }else{
                 console.log(`P1 health is: ${p1.health}`);
                 p1.health -= p2.attackPoint;
-                p1Health.textContent = p1.health;
                 p1PanelVisibility();
                 console.log(`P1 health is: ${p1.health}`);
             }
-            
+            p1Health.textContent = p1.health;
             
             if(p1.health <= 0)
             {
@@ -274,6 +268,50 @@ let p2EngageVisibility = () =>
     player2Actions.style.visibility = "hidden";
 }
 
+// Checks if the player 1 is diagonal to player 2
+let P1diagonalChecker = (p1Tile) =>
+{
+    if((p1Tile + 11) === randomTileP2 || (p1Tile + 13) === randomTileP2)
+    {
+        alert("P1 Engaging P2 Diagonal 1");
+        console.log(`Player 2 @ ${randomTileP1}`);
+        return true;
+    }else if((p1Tile - 11) === randomTileP2 || (p1Tile - 13) === randomTileP2)
+    {
+        alert("P1 Engaging P2 Diagonal 2");
+        console.log(`Player 2 @ ${randomTileP1}`);
+        return true;
+    }
+}
+// Checks if the player 2 is diagonal to player 1
+let P2diagonalChecker = (p2Tile) =>
+{
+    if((p2Tile + 11) === randomTileP1 || (p2Tile + 13) === randomTileP1)
+    {
+        alert("P2 Engaging P1 Diagonal 1");
+        console.log(`Player 2 @ ${randomTileP2}`);
+        return true;
+    }else if((p2Tile - 11) === randomTileP1 || (p2Tile - 13) === randomTileP1)
+    {
+        alert("P2 Engaging P1 Diagonal 2");
+        console.log(`Player 2 @ ${randomTileP2}`);
+        return true;
+    }
+}
+
+let P1Positioning = () =>
+{
+    gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+    gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+}
+
+let P2Positioning = () =>
+{
+    gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
+    gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
+}
+
+
 //Movements
 //Player 1
 //Added another condition if player 1 and player 2 tiles are the same, they will be engaging for a battle
@@ -292,22 +330,19 @@ $('#btnP1Left').click(function(){
     {
         alert("Cannot make any movement.");
         randomTileP1++;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
         
-    }else if(randomTileP1 === (randomTileP2 + 2))
+    }else if(randomTileP1 === (randomTileP2 + 2)  || P1diagonalChecker(randomTileP1))
     {
         alert("Engaging enemy P2");
-        // randomTileP1++;
-        randomTileP1--;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        // randomTileP1--;
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
         p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         tileMovement++;
         console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
@@ -321,7 +356,6 @@ $('#btnP1Left').click(function(){
 
 $('#btnP1Right').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
-    console.log(randomTileP1);
     randomTileP1++;
     if((gameTiles.length <= randomTileP1) 
     || blocksArray.includes(randomTileP1)
@@ -329,21 +363,18 @@ $('#btnP1Right').click(function(){
     {
         alert("P1 Cannot make any movement.");
         randomTileP1--;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
-    }else if(randomTileP1 === (randomTileP2 - 2))
+    }else if(randomTileP1 === (randomTileP2 - 2) || P1diagonalChecker(randomTileP1))
     {
             alert("Engaging enemy P2");
-            // randomTileP1--;
-            randomTileP1++;
-            gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-            gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+            // randomTileP1++;
+            P1Positioning();
             console.log(`Player 1 @ ${randomTileP1}`);
             p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         tileMovement++;
         console.log(tileMovement);
         if(tileMovement == 3)
@@ -357,7 +388,6 @@ $('#btnP1Right').click(function(){
 
 $('#btnP1Up').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
-    console.log(randomTileP1);
     randomTileP1 -= 12;
     if((gameTiles.length > randomTileP1 && randomTileP1 < 0) 
     || blocksArray.includes(randomTileP1)
@@ -365,22 +395,18 @@ $('#btnP1Up').click(function(){
     {
         alert("P1 Cannot make any movement.");
         randomTileP1 += 12;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
        
-    }else if(randomTileP1 === (randomTileP2 + 12))
+    }else if(randomTileP1 === (randomTileP2 + 12)  || P1diagonalChecker(randomTileP1))
     {
         alert("Engaging enemy P2");
-        // randomTileP1 += 12;
-        // randomTileP1 -= 12;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
         p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         tileMovement++;
         console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
@@ -394,28 +420,23 @@ $('#btnP1Up').click(function(){
 
 $('#btnP1Down').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
-    console.log(randomTileP1);
     randomTileP1 += 12;
     if((gameTiles.length <= randomTileP1) 
-    || blocksArray.includes(randomTileP1)
-    )
+    || blocksArray.includes(randomTileP1))
     {
         alert("P1 Cannot make any movement.");
         randomTileP1 -= 12;
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
-       
-    }else if(randomTileP1 === (randomTileP2 - 12))
+    }else if(randomTileP1 === (randomTileP2 - 12)  || P1diagonalChecker(randomTileP1))
     {
         alert("Engaging enemy P2");
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         console.log(`Player 1 @ ${randomTileP1}`);
         p1EngageVisibility();
     }else{
         p1WeaponsChecker(randomTileP1);
-        gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
-        gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
+        P1Positioning();
         tileMovement++;
         console.log(`Player 1 @ ${randomTileP1}`);
         if(tileMovement == 3)
@@ -432,29 +453,26 @@ $('#btnP1Down').click(function(){
 
 $('#btnP2Left').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
-    console.log(randomTileP2);
     randomTileP2--;
     if((gameTiles.length > randomTileP2 && randomTileP2 < 0) 
     || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
         randomTileP2++;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        console.log(randomTileP2);
-    }else if (randomTileP2 === (randomTileP1 + 2)){
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+    }else if (randomTileP2 === (randomTileP1 + 2) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
         // randomTileP2++;
-        randomTileP2--;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
-        console.log(randomTileP2);
+        // randomTileP2--;
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
         p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
+        P2Positioning();
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 2 @ ${randomTileP2}`);
         if(tileMovement == 3)
         {
             alert("Player 1 should now move");
@@ -466,28 +484,25 @@ $('#btnP2Left').click(function(){
 
 $('#btnP2Right').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
-    console.log(randomTileP2);
     randomTileP2++;
     if((gameTiles.length <= randomTileP2) 
     || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
         randomTileP2--;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        console.log(randomTileP2);
-    }else if (randomTileP2 === (randomTileP1 - 2)){
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+    }else if (randomTileP2 === (randomTileP1 - 2) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
-        randomTileP2++;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
-        console.log(randomTileP2);
+        // randomTileP2++;
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
         p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
+        P2Positioning();
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 2 @ ${randomTileP2}`);
         if(tileMovement == 3)
         {
             alert("Player 1 should now move");
@@ -499,28 +514,27 @@ $('#btnP2Right').click(function(){
 
 $('#btnP2Up').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
-    console.log(randomTileP2);
     randomTileP2 -= 12;
     if((gameTiles.length > randomTileP2 && randomTileP2 < 0) 
     || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
         randomTileP2 += 12;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        console.log(randomTileP2);
-    }else if (randomTileP2 === (randomTileP1 + 12)){
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+    }else if (randomTileP2 === (randomTileP1 + 12) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
         // randomTileP2 += 12;
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
-        console.log(randomTileP2);
+        console.log(`Player 2 @ ${randomTileP2}`);
         p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
         gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
         gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 2 @ ${randomTileP2}`);
         if(tileMovement == 3)
         {
             alert("Player 1 should now move");
@@ -532,28 +546,25 @@ $('#btnP2Up').click(function(){
 
 $('#btnP2Down').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
-    console.log(randomTileP2);
     randomTileP2 += 12;
     if((gameTiles.length <= randomTileP2) 
     || blocksArray.includes(randomTileP2))
     {
         alert("P2 Cannot make any movement.");
         randomTileP2 -= 12;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        console.log(randomTileP2);
-    }else if (randomTileP2 === (randomTileP1 - 12)){
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+    }else if (randomTileP2 === (randomTileP1 - 12) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
         // randomTileP2 -= 12;
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
-        console.log(randomTileP2);
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
         p2EngageVisibility();
     }else{
         p2WeaponsChecker(randomTileP2);
-        gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
-        gameTiles[randomTileP2].style.backgroundRepeat = "no-repeat";
+        P2Positioning();
         tileMovement++;
-        console.log(tileMovement);
+        console.log(`Player 2 @ ${randomTileP2}`);
         if(tileMovement == 3)   
         {
             alert("Player 1 should now move");
