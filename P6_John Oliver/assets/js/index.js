@@ -70,7 +70,7 @@ function mapLoad()
     
         console.log("Blocks:");
          //Display blocks in random area
-         for(var i = 0; i < 10; i++)
+         for(var i = 0; i < 15; i++)
          {
              let randomBlocks = Math.floor(Math.random() * gameTiles.length);
              gameTiles[randomBlocks].style.backgroundImage = "url('assets/img/blocks.png')";
