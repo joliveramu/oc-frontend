@@ -70,7 +70,7 @@ function mapLoad()
     
         console.log("Blocks:");
          //Display blocks in random area
-         for(var i = 0; i < 15; i++)
+         for(var i = 0; i < 12; i++)
          {
              let randomBlocks = Math.floor(Math.random() * gameTiles.length);
              gameTiles[randomBlocks].style.backgroundImage = "url('assets/img/blocks.png')";
@@ -133,12 +133,44 @@ function checkIfArrayIsUnique(myArray) {
 }
 
 
-// //onload function
+//onload function
 window.addEventListener("load",function(){
-    mapLoad();
+    // mapLoad();
+    // if(checkIfArrayIsUnique(tileChecker))
+    // {
+    //     //Do nothing
+    // }else if(P1diagonalChecker(randomTileP1) && P2diagonalChecker(randomTileP2))
+    // {
+    //     //Map will reload until nothing of the P1/P2 tiles placement are diagonally placed near to each other
+    //     alert("Player tiles are diagonally placed. Click OK to reload the game.");
+    //     location.reload();
+    // }else if (playerNearTileCheck(gameTiles[randomTileP1], gameTiles[randomTileP2]))
+    // {
+    //     //Map will reload until nothing of the P1/P2 tiles placement are a step near to each other
+    //     alert("Player tiles are nearly placed to each other. Click OK to reload the game.");
+    //     location.reload();
+    // }else{
+    //     //Map will reload until nothing of the tiles placement are being duplicated by the blocks
+    //     location.reload();
+    // }
+     mapLoad();
     if(checkIfArrayIsUnique(tileChecker))
     {
-        //Do nothing
+        
+        if(P1diagonalChecker(randomTileP1) && P2diagonalChecker(randomTileP2))
+        {
+            //Map will reload until nothing of the P1/P2 tiles placement are diagonally placed near to each other
+            alert("Player tiles are diagonally placed. Click OK to reload the game.");
+            location.reload();
+        }else if (playerNearTileCheck(randomTileP1, randomTileP2))
+        {
+            //Map will reload until nothing of the P1/P2 tiles placement are a step near to each other
+            alert("Player tiles are nearly placed to each other. Click OK to reload the game.");
+            location.reload();
+        }else{
+            //Do nothing
+            alert("Game commence!");
+        }
     }else{
         //Map will reload until nothing of the tiles placement are being duplicated by the blocks
         location.reload();

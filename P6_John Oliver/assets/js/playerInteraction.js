@@ -1,5 +1,34 @@
 //Player movements
 
+//This function will check if players are near to each other
+function playerNearTileCheck(player1, player2)
+{
+    if(player1 === (player2 + 1))
+    {
+        return true;
+    }else if(player2 === (player1 + 1))
+    {
+        return true;
+    }else if(player1 === (player2 - 1))
+    {
+        return true;
+    }else if(player2 === (player1 - 1)){
+
+        return true;
+    }else if(player1 === (player2 + 12))
+    {
+        return true;
+    }else if(player2 === (player1 + 12))
+    {
+        return true;
+    }else if(player1 === (player2 - 12))
+    {
+        return true;
+    }else if(player2 === (player1 - 12)){
+        return true;
+    }
+}
+
 //Check P1 Tile touches the weapons' tiles.
 function p1WeaponsChecker(p1Tile)
 {
@@ -19,6 +48,8 @@ function p1WeaponsChecker(p1Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack is now 20!");
                 console.log(`Player 1 Attack is: ${p1.attackPoint}`);
+                P1Positioning();
+                P2Positioning();
             }
             break;
         case weapon2:
@@ -35,6 +66,8 @@ function p1WeaponsChecker(p1Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack is now 30!");
                 console.log(`Player 1 Attack is: ${p1.attackPoint}`);
+                P1Positioning();
+                P2Positioning();
             }
             break;
         case weapon3:
@@ -51,6 +84,8 @@ function p1WeaponsChecker(p1Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P1 Attack is now 40!");
                 console.log(`Player 1 Attack is: ${p1.attackPoint}`);
+                P1Positioning();
+                P2Positioning();
             }
             break;
         case weapon4:
@@ -67,6 +102,8 @@ function p1WeaponsChecker(p1Tile)
                 gameTiles[weapon3].style.backgroundImage = "url('assets/img/"+weapons[2]+".png')";
                 alert("P1 Attack is now 50!");
                 console.log(`Player 1 Attack is: ${p1.attackPoint}`);
+                P1Positioning();
+                P2Positioning();
             }
             break;
         default:
@@ -92,6 +129,8 @@ function p2WeaponsChecker(p2Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack is now 20!");
                 console.log(`Player 2 Attack is: ${p2.attackPoint}`);
+                P2Positioning();
+                P1Positioning();
             }
             break;
         case weapon2:
@@ -108,6 +147,8 @@ function p2WeaponsChecker(p2Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack is now 30!");
                 console.log(`Player 2 Attack is: ${p2.attackPoint}`);
+                P2Positioning();
+                P1Positioning();
             }
             break;
         case weapon3:
@@ -124,6 +165,8 @@ function p2WeaponsChecker(p2Tile)
                 gameTiles[weapon4].style.backgroundImage = "url('assets/img/"+weapons[3]+".png')";
                 alert("P2 Attack is now 40!");
                 console.log(`Player 2 Attack is: ${p2.attackPoint}`);
+                P2Positioning();
+                P1Positioning();
             }
             break;
         case weapon4:
@@ -140,6 +183,8 @@ function p2WeaponsChecker(p2Tile)
                 gameTiles[weapon3].style.backgroundImage = "url('assets/img/"+weapons[2]+".png')";
                 alert("P2 Attack is now 50!");
                 console.log(`Player 2 Attack is: ${p2.attackPoint}`);
+                P2Positioning();
+                P1Positioning();
             }
             break;
         default:
