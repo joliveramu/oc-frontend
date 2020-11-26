@@ -38,7 +38,6 @@ function p1WeaponsChecker(p1Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                // p1.attackPoint = 10;
                 p1.attackPoint = 20;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
@@ -56,7 +55,6 @@ function p1WeaponsChecker(p1Tile)
             if(weapon2Access)
             {
                 weapon2Access = false;
-                // p1.attackPoint = 10;
                 p1.attackPoint = 30;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -74,7 +72,6 @@ function p1WeaponsChecker(p1Tile)
             if(weapon3Access)
             {
                 weapon3Access = false;
-                // p1.attackPoint = 10;
                 p1.attackPoint = 40;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -92,7 +89,6 @@ function p1WeaponsChecker(p1Tile)
             if(weapon4Access)
             {
                 weapon4Access = false;
-                // p1.attackPoint = 10;
                 p1.attackPoint = 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -107,10 +103,11 @@ function p1WeaponsChecker(p1Tile)
             }
             break;
         default:
-                break;
+            break;
     }
 }
 
+//Check P2 Tile touches the weapons' tiles.
 function p2WeaponsChecker(p2Tile)
 {
     switch(p2Tile)
@@ -119,7 +116,6 @@ function p2WeaponsChecker(p2Tile)
             if(weapon1Access)
             {
                 weapon1Access = false;
-                // p2.attackPoint = 10;
                 p2.attackPoint = 20;
                 weapon2Access = true;
                 gameTiles[weapon2].style.backgroundImage = "url('assets/img/"+weapons[1]+".png')";
@@ -137,7 +133,6 @@ function p2WeaponsChecker(p2Tile)
             if(weapon2Access)
             {
                 weapon2Access = false;
-                // p2.attackPoint = 10;
                 p2.attackPoint = 30;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -155,7 +150,6 @@ function p2WeaponsChecker(p2Tile)
             if(weapon3Access)
             {
                 weapon3Access = false;
-                // p2.attackPoint = 10;
                 p2.attackPoint = 40;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -173,7 +167,6 @@ function p2WeaponsChecker(p2Tile)
             if(weapon4Access)
             {
                 weapon4Access = false;
-                // p2.attackPoint = 10;
                 p2.attackPoint = 50;
                 weapon1Access = true;
                 gameTiles[weapon1].style.backgroundImage = "url('assets/img/"+weapons[0]+".png')";
@@ -192,6 +185,7 @@ function p2WeaponsChecker(p2Tile)
     }
 }
 
+//P1 Panel Visibility
 var p1PanelVisibility = () => 
 {
     p2AttackPanel.style.visibility = "hidden";
@@ -199,7 +193,7 @@ var p1PanelVisibility = () =>
     p1AttackPanel.style.visibility = "visible";
 }
   
-
+//P2 Panel Visibility
 var p2PanelVisibility = () => 
 {
     p1AttackPanel.style.visibility = "hidden";
@@ -207,22 +201,18 @@ var p2PanelVisibility = () =>
     p2AttackPanel.style.visibility = "visible";
 }
 
-  
-
-
+//P1 Attack
 $('#btnP1Attack').click(function(){
            
                 console.log(p2.defense);
                 if(p2.defense)
                 {
                     p2.health -= p1.attackPoint * 0.5;
-                    // p2Health.textContent = p2.health;
                     p2Health.textContent -= p1.attackPoint * 0.5;
                     p2PanelVisibility();
                     console.log(`P2 health is: ${p2.health}`);
                     p2.defense = false;
                 }else{
-                    // p2.health -= p1.attackPoint;
                     p2.health -= p1.attackPoint;
                     p2PanelVisibility();
                     console.log(`P2 health is: ${p2.health}`);
@@ -244,16 +234,7 @@ $('#btnP1Attack').click(function(){
             
 });
 
-$('#btnP1Defend').click(function(){
-    p1.defense = true;
-    p2PanelVisibility();
-});
-
-$('#btnP2Defend').click(function(){
-    p2.defense = true;
-    p1PanelVisibility();
-});
-
+//P2 Attack
 $('#btnP2Attack').click(function(){
         
             console.log(p1.defense);
@@ -285,18 +266,33 @@ $('#btnP2Attack').click(function(){
            
 });
 
+//P1 Defend
+$('#btnP1Defend').click(function(){
+    p1.defense = true;
+    p2PanelVisibility();
+});
+
+//P2 Defend
+$('#btnP2Defend').click(function(){
+    p2.defense = true;
+    p1PanelVisibility();
+});
+
+//P2 Visibility
 let p2Visibility = () =>
 {
     player1.style.visibility = "hidden";
     player2.style.visibility = "visible";
 }
 
+//P1 Visibility
 let p1Visibility = () =>
 {
     player1.style.visibility = "visible";
     player2.style.visibility = "hidden";
 }
 
+//P1 Engage visibility
 let p1EngageVisibility = () =>
 {
     $('#player1').css("visibility","visible");
@@ -306,6 +302,7 @@ let p1EngageVisibility = () =>
     player2Actions.style.visibility = "hidden";
 }
 
+//P2 Engage visibility
 let p2EngageVisibility = () =>
 {
     $('#player2').css("visibility","visible");
@@ -347,12 +344,14 @@ let P2diagonalChecker = (p2Tile) =>
     }
 }
 
+//P1 Positioning
 let P1Positioning = () =>
 {
     gameTiles[randomTileP1].style.backgroundImage = "url('assets/img/"+players[0]+".png')";
     gameTiles[randomTileP1].style.backgroundRepeat = "no-repeat";
 }
 
+//P2 Positioning
 let P2Positioning = () =>
 {
     gameTiles[randomTileP2].style.backgroundImage = "url('assets/img/"+players[1]+".png')";
@@ -368,6 +367,7 @@ $('#p1AttackPanel').css("visibility","hidden");
 $('#p2AttackPanel').css("visibility","hidden");
 $('#player2').css("visibility","hidden");
 
+//Player 1 Left movement
 $('#btnP1Left').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     console.log(randomTileP1);
@@ -403,6 +403,7 @@ $('#btnP1Left').click(function(){
     }
 });
 
+//Player 1 Right movement
 $('#btnP1Right').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     randomTileP1++;
@@ -436,6 +437,7 @@ $('#btnP1Right').click(function(){
     }
 });
 
+//Player 1 Up movement
 $('#btnP1Up').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     randomTileP1 -= 12;
@@ -469,6 +471,7 @@ $('#btnP1Up').click(function(){
     }
 });
 
+//Player 1 Down movement
 $('#btnP1Down').click(function(){
     gameTiles[randomTileP1].style.backgroundImage = "none";
     randomTileP1 += 12;
@@ -503,6 +506,7 @@ $('#btnP1Down').click(function(){
 
 //Player 2
 
+//Player 2 Left movement
 $('#btnP2Left').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     randomTileP2--;
@@ -515,8 +519,6 @@ $('#btnP2Left').click(function(){
         console.log(`Player 2 @ ${randomTileP2}`);
     }else if (randomTileP2 === (randomTileP1 + 1) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
-        // randomTileP2++;
-        // randomTileP2--;
         p2WeaponsChecker(randomTileP2);
         P2Positioning();
         console.log(`Player 2 @ ${randomTileP2}`);
@@ -535,6 +537,7 @@ $('#btnP2Left').click(function(){
     }
 });
 
+//Player 2 Right movement
 $('#btnP2Right').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     randomTileP2++;
@@ -547,38 +550,6 @@ $('#btnP2Right').click(function(){
         console.log(`Player 2 @ ${randomTileP2}`);
     }else if (randomTileP2 === (randomTileP1 - 1) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
-        // randomTileP2++;
-        p2WeaponsChecker(randomTileP2);
-        P2Positioning();
-        console.log(`Player 2 @ ${randomTileP2}`);
-        p2EngageVisibility();
-    }else{
-        p2WeaponsChecker(randomTileP2);
-        P2Positioning();
-        tileMovement++;
-        console.log(`Player 2 @ ${randomTileP2}`);
-        if(tileMovement == 3)
-        {
-            alert("Player 1 should now move");
-            tileMovement = 0;
-            p1Visibility();
-        }
-    }
-});
-
-$('#btnP2Up').click(function(){
-    gameTiles[randomTileP2].style.backgroundImage = "none";
-    randomTileP2 -= 12;
-    if((gameTiles.length > randomTileP2 && randomTileP2 < 0) 
-    || blocksArray.includes(randomTileP2))
-    {
-        alert("P2 Cannot make any movement.");
-        randomTileP2 += 12;
-        P2Positioning();
-        console.log(`Player 2 @ ${randomTileP2}`);
-    }else if (randomTileP2 === (randomTileP1 + 12) || P2diagonalChecker(randomTileP2)){
-        alert("Engaging P1");
-        // randomTileP2 += 12;
         p2WeaponsChecker(randomTileP2);
         P2Positioning();
         console.log(`Player 2 @ ${randomTileP2}`);
@@ -597,6 +568,38 @@ $('#btnP2Up').click(function(){
     }
 });
 
+//Player 2 Up movement
+$('#btnP2Up').click(function(){
+    gameTiles[randomTileP2].style.backgroundImage = "none";
+    randomTileP2 -= 12;
+    if((gameTiles.length > randomTileP2 && randomTileP2 < 0) 
+    || blocksArray.includes(randomTileP2))
+    {
+        alert("P2 Cannot make any movement.");
+        randomTileP2 += 12;
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+    }else if (randomTileP2 === (randomTileP1 + 12) || P2diagonalChecker(randomTileP2)){
+        alert("Engaging P1");
+        p2WeaponsChecker(randomTileP2);
+        P2Positioning();
+        console.log(`Player 2 @ ${randomTileP2}`);
+        p1EngageVisibility();
+    }else{
+        p2WeaponsChecker(randomTileP2);
+        P2Positioning();
+        tileMovement++;
+        console.log(`Player 2 @ ${randomTileP2}`);
+        if(tileMovement == 3)
+        {
+            alert("Player 1 should now move");
+            tileMovement = 0;
+            p1Visibility();
+        }
+    }
+});
+
+//Player 2 Down movement
 $('#btnP2Down').click(function(){
     gameTiles[randomTileP2].style.backgroundImage = "none";
     randomTileP2 += 12;
@@ -609,7 +612,6 @@ $('#btnP2Down').click(function(){
         console.log(`Player 2 @ ${randomTileP2}`);
     }else if (randomTileP2 === (randomTileP1 - 12) || P2diagonalChecker(randomTileP2)){
         alert("Engaging P1");
-        // randomTileP2 -= 12;
         p2WeaponsChecker(randomTileP2);
         P2Positioning();
         console.log(`Player 2 @ ${randomTileP2}`);

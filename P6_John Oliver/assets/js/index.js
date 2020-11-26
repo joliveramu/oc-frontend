@@ -33,18 +33,19 @@ let randomBoard = Math.floor(Math.random() * mapBoard.length);
 let randomTileP1 = Math.floor(Math.random() * gameTiles.length);
 let randomTileP2 = Math.floor(Math.random() * gameTiles.length);
 
-
 //P1 and P2 control panel
 let p1ActionPanel = document.getElementById('p1ActionPanel');
 let p2ActionPanel = document.getElementById('p2ActionPanel');
 
 //Player initial status settings
+//Player 1 Initial status
 let p1 = {
     health: 100,
     attackPoint: 10,
     defense: false
 };
 
+//Player 2 Initial status
 let p2 = {
     health: 100,
     attackPoint: 10,
@@ -70,15 +71,15 @@ function mapLoad()
     
         console.log("Blocks:");
          //Display blocks in random area
-         for(var i = 0; i < 12; i++)
-         {
+        for(var i = 0; i < 12; i++)
+        {
              let randomBlocks = Math.floor(Math.random() * gameTiles.length);
              gameTiles[randomBlocks].style.backgroundImage = "url('assets/img/blocks.png')";
              gameTiles[randomBlocks].style.backgroundRepeat = "no-repeat";
              tileChecker.push(randomBlocks);
              blocksArray.push(randomBlocks);
              console.log(randomBlocks);
-         }   
+        }   
            
         //Initialize weapons in random arrangement
         weapon1 = Math.floor(Math.random() * gameTiles.length);
@@ -119,6 +120,7 @@ function mapLoad()
         tileChecker.push(randomTileP2);
 }
 
+//Game restart function as result of the game has shown
 function gameRestart()
 {
     let restartGame = confirm("Would you like to play again?..");
@@ -135,25 +137,8 @@ function checkIfArrayIsUnique(myArray) {
 
 //onload function
 window.addEventListener("load",function(){
-    // mapLoad();
-    // if(checkIfArrayIsUnique(tileChecker))
-    // {
-    //     //Do nothing
-    // }else if(P1diagonalChecker(randomTileP1) && P2diagonalChecker(randomTileP2))
-    // {
-    //     //Map will reload until nothing of the P1/P2 tiles placement are diagonally placed near to each other
-    //     alert("Player tiles are diagonally placed. Click OK to reload the game.");
-    //     location.reload();
-    // }else if (playerNearTileCheck(gameTiles[randomTileP1], gameTiles[randomTileP2]))
-    // {
-    //     //Map will reload until nothing of the P1/P2 tiles placement are a step near to each other
-    //     alert("Player tiles are nearly placed to each other. Click OK to reload the game.");
-    //     location.reload();
-    // }else{
-    //     //Map will reload until nothing of the tiles placement are being duplicated by the blocks
-    //     location.reload();
-    // }
-     mapLoad();
+    //Load mapLoad function on start
+    mapLoad();
     if(checkIfArrayIsUnique(tileChecker))
     {
         
