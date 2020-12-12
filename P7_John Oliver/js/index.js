@@ -96,17 +96,31 @@
 //   .then(json => console.log(json));
 
 var db = openDatabase('restaurant-reviews', '1.0', 'Test DB', 2 * 1024 * 1024);
+var msg; 
 
+//This function inserts data in the Reviews table
 function saveData()
 {
   db.transaction(function (tx) {   
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Reviews (id text);'); 
-    tx.executeSql('INSERT INTO Reviews (id) VALUES (?);',[txtRestaurant.value])
-    window.alert("record is saved");
+    tx.executeSql('CREATE TABLE IF NOT EXISTS Reviews (restaurant_name text, score int, comment text);'); 
+    tx.executeSql('INSERT INTO Reviews (restaurant_name, score, comment) VALUES (?,?,?);',[txtRestaurant.value, txtRating.value, txtReview.value])
+    window.alert("Review recorded!");
     window.location.reload();
   });
 }
 
+// This function displays all the records in the Reviews table
+db.transaction(function (tx) { 
+  tx.executeSql('SELECT * FROM Reviews;', [], function (tx, results) { 
+    var len = results.rows.length, i; 
+    for (i = 0; i < len; i++) { 
+        msg = "<li class = 'list-group-item d-flex justify-content-between align-items-center mb-1'><b>" + results.rows.item(i).restaurant_name + "</b>"; 
+        msg += "<span class='badge badge-primary badge-pill'>"+ results.rows.item(i).score+"</span>";
+        msg += "<p>" + results.rows.item(i).comment +"</p></li>";
+      document.querySelector('#list').innerHTML +=  msg; 
+    } 
+  }, null); 
+}); 
 
 
 
