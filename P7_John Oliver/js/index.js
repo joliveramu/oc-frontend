@@ -111,12 +111,31 @@ function saveData()
 
 // This function displays all the records in the Reviews table
 db.transaction(function (tx) { 
-  tx.executeSql('SELECT * FROM Reviews;', [], function (tx, results) { 
+  tx.executeSql("SELECT DISTINCT(restaurant_name), avg(score) as 'score', comment from Reviews group by score order by score desc;", [], function (tx, results) { 
     var len = results.rows.length, i; 
     for (i = 0; i < len; i++) { 
-        msg = "<li class = 'list-group-item d-flex justify-content-between align-items-center mb-1'><b>" + results.rows.item(i).restaurant_name + "</b>"; 
-        msg += "<span class='badge badge-primary badge-pill'>"+ results.rows.item(i).score+"</span>";
-        msg += "<p>" + results.rows.item(i).comment +"</p></li>";
+        // msg = "<li class = 'list-group-item d-flex justify-content-between align-items-center mb-1'><b>" + results.rows.item(i).restaurant_name + "</b>"; 
+        // msg += "<span class='badge badge-primary badge-pill'>"+ results.rows.item(i).score+"</span>";
+        // msg += "<p>" + results.rows.item(i).comment +"</p></li>";
+
+    //     <p class="list-group-item list-group-item-action flex-column align-items-start">
+    //     <div class="d-flex w-100 justify-content-between">
+    //       <h5 class="mb-1">List group item heading</h5>
+    //       <small class="text-muted">3 days ago</small>
+    //     </div>
+    //     <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+    //     <small class="text-muted">Donec id elit non mi porta.</small>
+    // </p>
+
+    msg = "<a class='list-group-item list-group-item-action flex-column align-items-start'>";
+    msg += "<div class='d-flex w-100 justify-content-between'>";
+    msg += "<h5 class='mb-1 text-info'>"+results.rows.item(i).restaurant_name+"</h5>";
+    msg += "<small class='text-warning font-weight-bold'>"+results.rows.item(i).score+"</small>";
+    msg += "</div>";
+    msg += "<p class='mb-1 text-truncate'>"+results.rows.item(i).comment+"</p>";
+    // msg +=  "<small class='text-muted'>Donec id elit non mi porta.</small>";
+    msg += "</a><br/>";
+
       document.querySelector('#list').innerHTML +=  msg; 
     } 
   }, null); 
