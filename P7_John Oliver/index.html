@@ -26,21 +26,11 @@
     integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
     crossorigin=""></script>
 
-<style>
-    #map{
-        height: 360px;
-        width: 100%;
-    }
-</style>
-
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body class = "container-fluid">
-    <!-- We will put our React component inside this div. -->
-    <!-- <div id="example">
-        
-    </div> -->
 
-    <div class="fixed-top container-fluid navbar-expand-md navbar-light bg-info">
+    <div class="fixed-top container-fluid navbar-expand-md navbar-light bg-info mb-5">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,14 +38,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="index.html">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="navbar-brand" href="#">Restaurant Maps</a>
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="#">Leave a Review</a>
-                </li>
+                </li>  -->
             </ul>
         </div>
     </div>
@@ -70,106 +60,16 @@
         <div class = "col-md-4 " >
             <h1>Restaurants</h1>
             <hr/>
-            <!-- <ul class = "list-group overflow-auto" id = "list" style="height: 250px;"> -->
-                <!-- <li class="list-group-item d-flex justify-content-between align-items-center mb-1" id = "lblReviews">
-                    Martin's Cuisine
-                    <span class="badge badge-primary badge-pill">5</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center mb-1" id = "lblReviews">
-                    Angel's Burger
-                    <span class="badge badge-warning badge-pill">4.0</span>
-                </li> -->
-            <!-- </ul> -->
             <div class = "list-group overflow-auto" id = "list" style="height: 250px;">
-              
             </div>
         </div>
     </div>
 
-    <div class = "row">
-        <div class = "col-md-3"></div>
-        <div class = "col-md-6">
-            
-            <h1>Leave Review</h1>
-            <hr/>
-            <form method = "POST" onsubmit="saveData()">
-            <div class="form-group">
-                <label>Restaurant Name</label><br/>
-                <input type = "text" placeholder = "Enter restaurant name" id = "txtRestaurant" class = "form-control"/>
-            </div>
-
-            <div class="form-group">
-                <label>Restaurant Rating</label><br/>
-                <input type = "number" min = "1" max = "5" id="txtRating" class = "form-control" placeholder="Select 1 to 5"/>
-            </div>
-
-            <div class="form-group">
-                <label>Comments</label><br/>
-                <textarea id = "txtReview" class="form-control" rows="3" placeholder = "Enter your comments here"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-            </div>
-            </form>
-        </div>
-        <div class = "col-md-3"></div>
-    </div>
-
-
-
-
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <!-- <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
-
-    <!-- <script src="js/react.production.min.js" crossorigin></script>
-    <script src="js/react-dom.production.min.js" crossorigin></script>
-    <script src="js/babel.min.js"></script> -->
-
-    <!-- Load our React component. -->
-    <!-- <script type="text/babel" src="js/index.js"></script> -->
+>
+    <script src="js/data.js"></script>
     <script src="js/index.js"></script>
 
     <!-- Leaflet JS-->
-    <script>
-    var map = L.map('map').setView([14.5552734,120.9999306], 13);
-
-
-    L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=rbSj7RYeRSmrshxqhdgx',{
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-    }).addTo(map);
-    var marker = L.marker([14.5552734,120.9999306]).addTo(map);
-    var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
-
-L.esri.Geocoding.geosearch({
-  providers: [
-    arcgisOnline,
-    L.esri.Geocoding.mapServiceProvider({
-      label: 'States and Counties',
-      url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
-      layers: [2, 3],
-      searchFields: ['NAME', 'STATE_NAME']
-    })
-  ]
-}).addTo(map);
-
-
-    function onMapClick(e) {
-        alert("You clicked the map at " + e.latlng);
-        txtRestaurant.value = e.latlng;
-        var marker = L.marker(e.latlng).addTo(map);
-        var popup = L.popup()
-    .setLatLng(e.latlng)
-    .setContent(`I have selected this place @ ${e.latlng}.`)
-    .openOn(map);
-    }
-
-    
-    map.on('click', onMapClick);
-
-
-    </script>
+    <script src="js/map.js"></script>
 </body>
 </html>
