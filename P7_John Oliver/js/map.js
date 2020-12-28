@@ -12,9 +12,9 @@ var marker = L.marker([14.5552734,120.9999306]).addTo(map);
 for(let i = 0; i < data.length; i++)
 {
 
-    L.marker([data[i].lat, data[i].long]).addTo(map).bindPopup(data[i].restaurantName).openPopup();
+    L.marker([data[i].lat, data[i].long]).addTo(map).bindPopup(`${data[i].restaurantName} <br> <a href='https://www.instantstreetview.com/@${[data[i].lat,data[i].long]},43.51h,5p,1z' target='_blank'>View Place</a>`).openPopup();
     L.circle([data[i].lat, data[i].long]).addTo(map);
-
+   
 }
 
 
@@ -62,6 +62,7 @@ providers: [
 ]
 }).addTo(map);
     
+
 
 
 
