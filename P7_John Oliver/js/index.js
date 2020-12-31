@@ -24,6 +24,7 @@
 
 
 let msg, sum = 0, avg = 0;
+let ratings = rating.value;
 fetch("js/data.json")
 .then((res) => res.json())
 .then((data) => {
@@ -44,11 +45,48 @@ fetch("js/data.json")
         avg = sum / record.ratings.length;
       }
       msg += `</ul>`;
-      msg +=  `<small class='text-muted'><b class = 'average'>${avg}</b></small>`;
+      msg +=  `<small class='text-muted'><b class = 'average'>${parseInt(avg)}</b></small>`;
       msg += "</a><br/>";
       document.querySelector('#list').innerHTML +=  msg; 
       sum = 0;
   }); 
-})
+
+  //Filter function inside the fetch API
+  // let result = data.filter(function(obj){
+  //   // return obj.restaurantName === "Barry's Walastik";
+  //   for(let i = 0; i < obj.ratings.length; i++)
+  //     {
+  //       if(obj.ratings[i].stars <= 4)
+  //       {
+  //         // console.log(`${obj.ratings[i].comment}`);
+  //         return obj;
+  //       }
+  //     }
+
+
+  });
+
+//   $(document).ready(function(){
+//     $("#rating").on("keyup", function() {
+//       var value = $(this).val().toLowerCase();
+//       $("#list .list-group-item").filter(function() {
+//         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+//       });
+//     });
+//   });
+// })
+
+//Bootstrap filter function using JQuery
+  $(document).ready(function(){
+    $("#rating").change(function() {
+      var value = $(this).val().toLowerCase();
+      // $("#list a").filter(function() {
+      //   $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      // });
+      $("#list a").show().filter(function() {
+        return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+      }).hide();
+    });
+  });
 
 
