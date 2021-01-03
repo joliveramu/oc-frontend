@@ -62,26 +62,30 @@
             <hr/>
             <!-- For filter of stars  -->
             <div class = "form-group">
-                <select id = "rating" class ="form-control" style="width:50%;" required>
+                <!-- <select id = "rating" class ="form-control" style="width:50%;" required onchange="searchRecord()">
                     <option value = "">Select Stars</option>
                     <option value = "5">5</option>
                     <option value = "4">4</option>
                     <option value = "3">3</option>
                     <option value = "2">2</option>
                     <option value = "1">1</option>
-                </select>
+                </select> -->
+
+                    <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" required/>
+                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" placeholder = "Enter values from 1 to 5" required/>
+                    <!-- <button class = "btn btn-primary" type = "submit" onclick="searchRecord()">Select Range</button> -->
+                     <button class = "btn btn-primary"  onclick="searchRecord()">Select Range</button>
                 <!-- <input type = "number" placeholder="Enter any number from 1 to 5" min="1" max="5" id = "rating"/> -->
             </div>
             <div class = "list-group overflow-auto" id = "list" style="height: 250px;">
             </div>
         </div>
     </div>
-
-    <script src="js/data.js"></script>
+    <!-- <img src = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=14.5431196,121.0026515&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4"/> -->
     <script src="js/index.js"></script>
     
     <!-- Leaflet JS-->
     <script src="js/map.js"></script>
-    <script src="js/StreeViewButton.js"></script>
+    <!-- <script src="js/StreeViewButton.js"></script> -->
 </body>
 </html>
