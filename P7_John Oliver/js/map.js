@@ -4,7 +4,7 @@ L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=rbSj7
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
 }).addTo(map);
 
-var marker = L.marker([14.5552734,120.9999306]).addTo(map);
+// var marker = L.marker([14.5552734,120.9999306]).addTo(map);
 
 
 //Display all restaurants in the leaflet map using their lat lng coordinates
@@ -62,21 +62,7 @@ function onLocationError(e) {
 map.on('locationerror', onLocationError);
 
 
-//ESRI
-// var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
 
-// L.esri.Geocoding.geosearch({
-// providers: [
-//     arcgisOnline,
-//     L.esri.Geocoding.mapServiceProvider({
-//     label: 'States and Counties',
-//     url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
-//     layers: [2, 3],
-//     searchFields: ['NAME', 'STATE_NAME']
-//     })
-// ]
-// }).addTo(map);
-    
 
 
 

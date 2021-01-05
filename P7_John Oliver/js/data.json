@@ -1,20 +1,5 @@
 [
-    {
-       "restaurantName":"Barry's Walastik",
-       "address":"3529 Protacio, Pasay, Metro Manila",
-       "lat":14.5433597,
-       "long":121.0042531,
-       "ratings":[
-       {
-          "stars":4,
-          "comment":"One of the best pairs in town!"
-          },
-          {
-          "stars":3,
-          "comment":"My favorite place since childhood!"
-          }
-       ]
-    },
+    
     {
        "restaurantName":"AU 2552",
        "address":"2552 Aurora, Pasay, Metro Manila",
@@ -26,7 +11,7 @@
              "comment":"Fine-dining cuisine in Aurora!"
           },
           {
-             "stars":4,
+             "stars":5,
              "comment":"Cheap eats!"
           }
        ]
@@ -44,7 +29,11 @@
           {
              "stars":4,
              "comment":"good sizzling variations"
-          }
+          },
+          {
+            "stars":5,
+            "comment":"good foods"
+         }
        ]
        },
        {
@@ -54,7 +43,7 @@
        "long":121.0026911,
        "ratings":[
           {
-             "stars":4,
+             "stars":3,
              "comment":"Food is good but place is quite small"
           },
           {
@@ -64,26 +53,26 @@
        ]
     },
     {
-       "restaurantName":"Milans Tapsilogan At Iba Pa",
-       "address":"2700 Tramo, 111 Zone 12, Pasay, 1303 Metro Manila",
-       "lat":14.5440594,
-       "long":121.0027668,
+       "restaurantName":"New Harlem Restaurant",
+       "address":"Antonio S. Arnaiz Ave, Pasay, Metro Manila",
+       "lat":14.5472883,
+       "long":120.9967544,
        "ratings":[
           {
-             "stars":5,
-             "comment":"Good tapsilogan in Tramo lane!"
+             "stars":4,
+             "comment":"Good Asian-fusion Resto in Pasay Road!"
           },
           {
-             "stars":5,
+             "stars":4,
              "comment":"So, goood!"
           }
        ]
     },
     {
-       "restaurantName":"Food tara guest ka",
-       "address":"2532 Tolentino St, Pasay, Metro Manila",
-       "lat":14.5450771,
-       "long":121.0062137,
+       "restaurantName":"CUSI-NAH Resto Bar",
+       "address":"2408-I P.Zamora, Pasay, 1303 Metro Manila",
+       "lat":14.5472929,
+       "long":121.0006675,
        "ratings":[
           {
              "stars":5,
@@ -92,18 +81,14 @@
        ]
     },
     {
-       "restaurantName":"JTR Tapsihan",
-       "address":"2023-B/2025 B Tramo Cor. Tengco St., 108 Zone 12, Pasay, 1303 Metro Manila",
-       "lat":14.5466621,
-       "long":121.0024819,
+       "restaurantName":"Wei-Cha Capitol Food House",
+       "address":"552 Antonio S. Arnaiz Ave, Pasay, 1300 Metro Manila",
+       "lat":14.5481973,
+       "long":121.0035737,
        "ratings":[
           {
              "stars":4,
-             "comment":"A good eatery of value meals"
-          },
-          {
-             "stars":4,
-             "comment":"food is good"
+             "comment":"food is quite acceptable"
           }
        ]
     }

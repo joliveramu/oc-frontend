@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    let result;
+    let sum = 0;
+    let avg = 0;
+    fetch("js/data.json")
+        .then((res) => res.json())
+        .then((data) => {
+           
+            // result = data.filter(function(record){
+            //     console.log(record.length);
+            // });
+            for(let i = 0; i < data.length; i++)
+            {
+                // console.log(`${data[i].restaurantName} review count is: ${data[i].ratings.length}`);
+                // console.log();
+                for(let j = 0; j < data[i].ratings.length; j++)
+                {
+                    //console.log(data[i].ratings[j].stars);
+                    sum = sum + data[i].ratings[j].stars;
+                    avg = sum / data[i].ratings.length;
+                }
+                sum = 0;
+                if(avg >= 4 && avg <= 5)
+                {
+                    console.log(`${data[i].restaurantName} average rating is ${avg} ${data[i].lat},${data[i].long}`);
+                }
+
+            }
+        });
+        
+    </script>
+</body>
+</html>
