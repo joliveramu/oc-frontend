@@ -6,37 +6,58 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1 id = "yeah"></h1>
+<script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
+    <script src="js/alasql.min.js"></script>
     <script>
-    let result;
-    let sum = 0;
-    let avg = 0;
-    fetch("js/data.json")
-        .then((res) => res.json())
-        .then((data) => {
-           
-            // result = data.filter(function(record){
-            //     console.log(record.length);
-            // });
-            for(let i = 0; i < data.length; i++)
-            {
-                // console.log(`${data[i].restaurantName} review count is: ${data[i].ratings.length}`);
-                // console.log();
-                for(let j = 0; j < data[i].ratings.length; j++)
-                {
-                    //console.log(data[i].ratings[j].stars);
-                    sum = sum + data[i].ratings[j].stars;
-                    avg = sum / data[i].ratings.length;
-                }
-                sum = 0;
-                if(avg >= 4 && avg <= 5)
-                {
-                    console.log(`${data[i].restaurantName} average rating is ${avg} ${data[i].lat},${data[i].long}`);
-                }
+//         Tesseract.recognize(
+//   'https://tesseract.projectnaptha.com/img/eng_bw.png',
+//   'eng',
+//   { logger: m => console.log(m) }
+// ).then(({ data: { text } }) => {
+//   yeah.innerHTML = text;
+// })
+  alasql("CREATE TABLE reviews (review_id INT, restaurant_id INT, stars INT, comment STRING);");
+alasql("INSERT INTO reviews VALUES (1, 2, 4, 'Good')");
+alasql("INSERT INTO reviews VALUES (2, 1, 5, 'Best!')");
+alasql("INSERT INTO reviews VALUES (3, 3, 4, 'Good food')");
+alasql("INSERT INTO reviews VALUES (4, 1, 4, 'Good food')");
+alasql("create table restaurant (restaurant_id int, name STRING);");
+alasql("INSERT INTO restaurant values (1,'Pares'), (2,'Mami'),(3,'Siomai Rice');");
+console.log(alasql("SELECT r.name, c.comment, c.stars from reviews as c inner join restaurant as r on r.restaurant_id = c.restaurant_id;"));
+let sql = alasql("select * from reviews where restaurant_id = 1;")
+console.log(`${sql.length} ${sql[0].comment}`);
+alasql(`insert into restaurant values (4,'${'Pancit'}');`);
+console.log(alasql("select * from restaurant"));
+    // let result;
+    // let sum = 0;
+    // let avg = 0;
+    // fetch("js/data.json")
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //        reviews = localStorage.setItem("reviews",JSON.stringify(data));
+    //         // result = data.filter(function(record){
+    //         //     console.log(record.length);
+    //         // });
+    //         for(let i = 0; i < data.length; i++)
+    //         {
+    //             // console.log(`${data[i].restaurantName} review count is: ${data[i].ratings.length}`);
+    //             // console.log();
+    //             for(let j = 0; j < data[i].ratings.length; j++)
+    //             {
+    //                 //console.log(data[i].ratings[j].stars);
+    //                 sum = sum + data[i].ratings[j].stars;
+    //                 avg = sum / data[i].ratings.length;
+    //             }
+    //             sum = 0;
+    //             if(avg >= 4 && avg <= 5)
+    //             {
+    //                 console.log(`${data[i].restaurantName} average rating is ${avg} ${data[i].lat},${data[i].long}`);
+    //             }
 
-            }
-        });
-        
+    //         }
+    //     });
+        //console.log(JSON.parse(localStorage.getItem("reviews"))[0].ratings[0]);
     </script>
 </body>
 </html>

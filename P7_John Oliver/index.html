@@ -64,6 +64,37 @@
             <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.36051977605587!2d120.99987828081083!3d14.55523733238503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c96ff271107d%3A0x3c84e4f6e1623120!2sMartin&#39;s%20Cuisine!5e0!3m2!1sen!2sph!4v1606553192806!5m2!1sen!2sph" 
             width="100%" height="500" frameborder="0" style="border:0;"></iframe> -->
             <div id = "map" class = "mt-5"></div>
+
+            <div class = "col-md-4 m-5">
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Write Review
+            </button>
+    
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Write Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- <input type = "text" class = "form-control"/> -->
+                        <div id = "restaurants">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+                   
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
         <div class = "col-md-4 mt-5" >
             <h1>Restaurants</h1>
@@ -79,8 +110,8 @@
                     <option value = "1">1</option>
                 </select> -->
                     <label>Filters</label>
-                    <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" required onchange="searchRecord()"/><br/>
-                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" value = "5" placeholder = "Enter values from 1 to 5" required onchange="searchRecord()"/>
+                    <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/><br/>
+                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" value = "5" placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/>
                     <!-- <button class = "btn btn-primary" type = "submit" onclick="searchRecord()">Select Range</button> -->
                      <!-- <button class = "btn btn-primary"  onclick="searchRecord()">Select Range</button> -->
                 <!-- <input type = "number" placeholder="Enter any number from 1 to 5" min="1" max="5" id = "rating"/> -->
@@ -88,7 +119,12 @@
             <div class = "list-group overflow-auto" id = "list" style="height: 250px;">
             </div>
         </div>
+        
     </div>
+
+   
+    
+    <script src="js/alasql.min.js"></script>
     <!-- <img src = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=14.5431196,121.0026515&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4"/> -->
     <script src="js/index.js"></script>
     
