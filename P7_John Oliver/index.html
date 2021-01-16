@@ -13,20 +13,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-<!-- Load Esri Leaflet from CDN -->
-  <!-- <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js"
-    integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ=="
-    crossorigin=""></script> -->
-
-  <!-- Load Esri Leaflet Geocoder from CDN -->
-  <!-- <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css"
-    integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
-    crossorigin="">
-  <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js"
-    integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
-    crossorigin=""></script> -->
-
-    <link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body class = "container-fluid">
 
@@ -46,23 +33,12 @@
                     <h4><b>Resto Mungkahi MNL</b></h1>
                     <h5>Finest Restaurants in the PH's Metropolitan Manila!</h4>
                 </li> 
-                
-
-                <!-- <li class="nav-item">
-                    <a class="navbar-brand" href="#">Restaurant Maps</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand" href="#">Leave a Review</a>
-                </li>  -->
             </ul>
         </div>
     </div>
 
     <div class = "row mt-5">
         <div class = "col-md-8">
-            
-            <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241.36051977605587!2d120.99987828081083!3d14.55523733238503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c96ff271107d%3A0x3c84e4f6e1623120!2sMartin&#39;s%20Cuisine!5e0!3m2!1sen!2sph!4v1606553192806!5m2!1sen!2sph" 
-            width="100%" height="500" frameborder="0" style="border:0;"></iframe> -->
             <div id = "map" class = "mt-5"></div>
 
             <div class = "col-md-4 m-5">
@@ -82,7 +58,6 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        <!-- <input type = "text" class = "form-control"/> -->
                         <div id = "restaurants">
 
                         </div>
@@ -101,20 +76,27 @@
             <hr/>
             <!-- For filter of stars  -->
             <div class = "form-group">
-                <!-- <select id = "rating" class ="form-control" style="width:50%;" required onchange="searchRecord()">
-                    <option value = "">Select Stars</option>
-                    <option value = "5">5</option>
-                    <option value = "4">4</option>
-                    <option value = "3">3</option>
-                    <option value = "2">2</option>
-                    <option value = "1">1</option>
-                </select> -->
+                <form>
                     <label>Filters</label>
-                    <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/><br/>
-                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" value = "5" placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/>
-                    <!-- <button class = "btn btn-primary" type = "submit" onclick="searchRecord()">Select Range</button> -->
-                     <!-- <button class = "btn btn-primary"  onclick="searchRecord()">Select Range</button> -->
-                <!-- <input type = "number" placeholder="Enter any number from 1 to 5" min="1" max="5" id = "rating"/> -->
+                     <select id ="range1" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
+                        <option value = "">Select Stars</option>
+                        <option value = "5">5</option>
+                        <option value = "4">4</option>
+                        <option value = "3">3</option>
+                        <option value = "2">2</option>
+                        <option value = "1">1</option>
+                      </select>
+                      <select id ="range2" class ="form-control" style="width:50%;" required onchange="searchRecord()">
+                        <option value = "">Select Stars</option>
+                        <option value = "5">5</option>
+                        <option value = "4">4</option>
+                        <option value = "3">3</option>
+                        <option value = "2">2</option>
+                        <option value = "1">1</option>
+                      </select>
+                    <!-- <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/><br/>
+                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" value = "5" placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/> -->
+                </form>
             </div>
             <div class = "list-group overflow-auto" id = "list" style="height: 250px;">
             </div>
@@ -126,6 +108,7 @@
     
     <script src="js/alasql.min.js"></script>
     <!-- <img src = "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=14.5431196,121.0026515&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4"/> -->
+    
     <script src="js/index.js"></script>
     
     <!-- Leaflet JS-->
