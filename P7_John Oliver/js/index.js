@@ -12,7 +12,7 @@ fetch("js/data.json")
   data.forEach(function(record){
       msg = "<a class='list-group-item list-group-item-action flex-column align-items-start'>";
       msg += "<div class='d-flex w-100 justify-content-between'>";
-      msg += `<h5 class='mb-1 text-info'>${record.restaurantName}</h5>`;
+      msg += `<h5 class='mb-1 text-info'><b>${record.restaurantName}</b><hr/>${record.address}</h5>`;
       msg += `<small class='text-warning font-weight-bold'></small>`;
       msg += "</div>"; 
       msg += `<p class='mb-1 text-truncate'></p>`;
@@ -39,13 +39,13 @@ fetch("js/data.json")
   
   function loadDataPersistent()
   {
-    query += alasql("CREATE TABLE restaurant(id integer not null primary key autoincrement, resto_name text, lat real NOT NULL ,long real NOT NULL);");
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('AU 2552', 14.5434407, 121.0045482);"); 
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('CKA Jollyplate Eatery', 14.5431196, 121.0026515);");
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('Omartville Foodhub', 14.5434616, 121.0026911);");
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('New Harlem Restaurant', 14.5472883, 120.9967544);");
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('CUSI-NAH Resto Bar', 14.5472929, 121.0006675);");
-    query += alasql("insert into restaurant (resto_name, lat, long) values ('Wei-Cha Capitol Food House', 14.5481973, 121.0035737);");
+    query += alasql("CREATE TABLE restaurant(id integer not null primary key autoincrement, restaurantName text, address text, lat real NOT NULL ,long real NOT NULL);");
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('AU 2552', '2552 Aurora, Pasay, Metro Manila', 14.5434407, 121.0045482);"); 
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('CKA Jollyplate Eatery', '465 A-1 Protacio, Pasay, Metro Manila', 14.5431196, 121.0026515);");
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('Omartville Foodhub', '2303 Tramo, Pasay, Metro Manila', 14.5434616, 121.0026911);");
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('New Harlem Restaurant', 'Antonio S. Arnaiz Ave, Pasay, Metro Manila', 14.5472883, 120.9967544);");
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('CUSI-NAH Resto Bar', '2408-I P.Zamora, Pasay, 1303 Metro Manila', 14.5472929, 121.0006675);");
+    query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('Wei-Cha Capitol Food House', '552 Antonio S. Arnaiz Ave, Pasay, 1300 Metro Manila', 14.5481973, 121.0035737);");
     let display = alasql("select * from restaurant");
     console.log(display);
     
@@ -68,19 +68,20 @@ fetch("js/data.json")
   function loadRestaurants()
   {
     document.querySelector('#restaurants').innerHTML = null;
-    let holder = `<form id = 'frmReview' method = 'POST'>`;
-    holder += `<select id = 'cmbRestaurant' class='form-control mb-2' required>`;
+    // let holder = `<form id = 'frmReview' method = 'POST'>`;
+    let holder = `<select id = 'cmbRestaurant' class='form-control mb-2' required>`;
       holder += ` <option value =''>Select Restaurant</option>`;
-      let query = alasql(`SELECT r.resto_name, r.id from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.id;`);
+      // let query = alasql(`SELECT r.resto_name, r.id from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.id;`);
+     let query = alasql(`select r.restaurantName, r.id from restaurant as r;`);
       query.forEach(function(data){
-        holder += `<option value ='${data.id}'>${data.resto_name}</option>`;
+        holder += `<option value ='${data.id}'>${data.restaurantName}</option>`;
         console.log(data.resto_name);
       });
         holder += `</select>`;
         holder += `<input type ='number' class = 'form-control mb-2' min='1' max='5' placeholder = 'Select from 1 to 5' id = 'txtStars'/>`;
         holder += `<textarea required class = 'form-control mb-2' id = 'txtReview' placeholder ='Write Review here..'></textarea>`;
-        holder += `<button type="submit" class="btn btn-primary">Save changes</button>`;
-        holder += `</form>`;
+        holder += `<button class="btn btn-primary" id ='btnSaveReview' onclick='submitReview()'>Save changes</button>`;
+        // holder += `</form>`;
         document.querySelector('#restaurants').innerHTML +=  holder;
   }
   
@@ -94,7 +95,7 @@ fetch("js/data.json")
 function searchRecord()
 {
   //Declaring iterator variable to handle restaurant id for reviewsQuery
-  let iterator = 1;
+  // let iterator = 1;
     if(range2.value < range1.value)
     {
       // alert("Second Parameter must be greater than the 1st parameter");
@@ -103,8 +104,8 @@ function searchRecord()
         $(".leaflet-popup").remove();
         $(".leaflet-marker-shadow").remove();
         document.querySelector('#list').innerHTML = null;
-        let restaurantQuery = alasql("SELECT r.resto_name, avg(rr.stars) AS Ratings, r.lat, r.long  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.lat, r.long;");
-        let reviewsQuery = alasql("select * from restaurant_review;");
+        let restaurantQuery = alasql("SELECT r.restaurantName, avg(rr.stars) AS Ratings, r.lat, r.long, r.id, r.address  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.restaurantName, r.lat, r.long, r.id, r.address;");
+        let reviewsQuery = alasql(`select * from restaurant_review;`);
 
         restaurantQuery.forEach(function(data)
         {
@@ -113,7 +114,7 @@ function searchRecord()
           {
             msg = "<a class='list-group-item list-group-item-action flex-column align-items-start'>";
             msg += "<div class='d-flex w-100 justify-content-between'>";
-            msg += `<h5 class='mb-1 text-info'>${data.resto_name}</h5>`;
+            msg += `<h5 class='mb-1 text-info'>${data.restaurantName}<br/><hr/>${data.address}</h5>`;
             msg += `<small class='text-warning font-weight-bold'></small>`;
             msg += "</div>"; 
             msg += `<p class='mb-1 text-truncate'></p>`;
@@ -121,12 +122,12 @@ function searchRecord()
 
         
             reviewsQuery.forEach(function(reviewRecord){
-              if(reviewRecord.restaurant_id === iterator)
+              if(reviewRecord.restaurant_id === data.id)
               {
                 msg +=  `<li><small class='text-muted'><b>${reviewRecord.comment}</b></small></li>`;
               }
             });
-            iterator++;
+            // iterator++;
 
             msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`;
             msg += `</ul>`;
@@ -135,7 +136,7 @@ function searchRecord()
             document.querySelector('#list').innerHTML +=  msg; 
             
             //Display markers of each location
-            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.resto_name} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
+            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.restaurantName} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
             L.circle([data.lat, data.long]).addTo(map);
           }
         });
@@ -143,21 +144,54 @@ function searchRecord()
 }
 
 
-frmReview.addEventListener('submit',(event) =>{
-  event.preventDefault();
 
-  let isOkay = alasql(`insert into restaurant_review (restaurant_id, stars, comment) values (${cmbRestaurant.value}, ${txtStars.value}, '${txtReview.value.replaceAll("'","\\'")}');`,);
-  if(isOkay === 1)
+ function submitReview()
+ {
+
+  if((cmbRestaurant.value !== null && txtStars.value != null && txtStars.value >= 1 && txtStars.value <= 5 && txtReview.value != null))
   {
-    alert("Review for the restaurant is added!!");
+    let isOkay = alasql(`insert into restaurant_review (restaurant_id, stars, comment) values (${cmbRestaurant.value}, ${txtStars.value}, '${txtReview.value.replaceAll("'","\\'")}');`,);
+    if(isOkay === 1)
+    {
+      alert("Review for the restaurant is added!!");
+      txtStars.value ="";
+      cmbRestaurant.value = "";
+      txtReview.value = "";
+      let query = alasql(`SELECT r.resto_name, avg(rr.stars) AS Ratings, r.lat, r.long  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.lat, r.long;`);
+       query.forEach(function(data){
+         console.log(data);
+       });
+       console.log(alasql("select * from restaurant_review"));
+       // frmReview.submit();
+    }else{
+      alert("Cannot submit");
+    }
     
-     let query = alasql(`SELECT r.resto_name, avg(rr.stars) AS Ratings, r.lat, r.long  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.lat, r.long;`);
-      query.forEach(function(data){
-        console.log(data);
-      });
-      console.log(alasql("select * from restaurant_review"));
-      // frmReview.submit();
   }else{
-    alert("Problem encountered");
+    alert("Problem encountered: Error on submitting reviews.");
+    txtStars.focus();
+  }
+
+ }
+ 
+
+
+frmAddRestaurant.addEventListener('submit', (e) =>{
+  e.preventDefault();
+
+  let isAccepted = alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${txtRestoName.value.replaceAll("'","\\'")}', '${txtAddress.value.replaceAll("'","\\'")}', ${txtLat.value}, ${txtLong.value});`);
+
+  if(isAccepted)
+  {
+    loadRestaurants();
+    alert("Restaurant is added!!");
+    txtRestoName.value = null;
+    txtAddress.value = null;
+    txtLat.value = null;
+    txtLong.value = null;
+    L.marker([txtLat.value, txtLong.value]).addTo(map).bindPopup(`${txtRestoName.value} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[txtLat.value, txtLong.value]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
+    L.circle([txtLat.value, txtLong.value]).addTo(map);
+   }else{
+    alert("Problem encountered in adding restaurant");
   }
 });
