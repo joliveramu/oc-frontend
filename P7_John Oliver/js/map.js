@@ -37,15 +37,15 @@ map.on('locationerror', onLocationError);
 
 
 
-    // function onMapClick(e) {
-    //     alert("You clicked the map at " + e.latlng);
-    //     txtRestaurant.value = e.latlng;
-    //     var marker = L.marker(e.latlng).addTo(map);
-    //     var popup = L.popup()
-    // .setLatLng(e.latlng)
-    // .setContent(`I have selected this place @ ${e.latlng}.`)
-    // .openOn(map);
-    // }
+function onMapClick(e) {
+    //alert("You clicked the map at " + e.latlng);
+    //Displays Latitude value at txtLat input
+    txtLat.value = e.latlng.lat;
+     //Displays Latitude value at txtLong input
+    txtLong.value = e.latlng.lng;
+    //Displays #exampleModal2
+    $('#exampleModal2').modal('show');
+}
 
    
-    // map.on('click', onMapClick);
+    map.on('click', onMapClick);

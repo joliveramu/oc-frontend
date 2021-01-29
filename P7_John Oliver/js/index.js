@@ -195,3 +195,14 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
     alert("Problem encountered in adding restaurant");
   }
 });
+
+
+//https://developers.google.com/places/web-service/search
+
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//Referencing location of CKA Resto
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5431196,121.0026515&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//Referencing the location of our home
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
