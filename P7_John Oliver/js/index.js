@@ -4,6 +4,7 @@ let query = "";
 let query2 = "";
 
 let revs;
+const API_KEY = "AIzaSyBdX9wWxETF43D9sE0FHsrdOhkHIa6EXBw";
 
 fetch("js/data.json")
 .then((res) => res.json())
@@ -23,7 +24,7 @@ fetch("js/data.json")
         avg = sum / record.ratings.length;
         msg +=  `<li><small class='text-muted'><b>${record.ratings[i].comment}</b></small></li>`;
       }
-      msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[record.lat,record.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`;
+      msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[record.lat,record.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`;
       msg += `</ul>`;
       msg +=  `<small class='text-muted'><b class = 'average'>${avg.toFixed(2)}</b></small>`;
       msg += "</a><br/>";
@@ -31,7 +32,7 @@ fetch("js/data.json")
       sum = 0;
 
        //Display markers of each location
-        L.marker([record.lat, record.long]).addTo(map).bindPopup(`${record.restaurantName} <label class ='text-warning'>${parseFloat(avg).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[record.lat,record.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
+        L.marker([record.lat, record.long]).addTo(map).bindPopup(`${record.restaurantName} <label class ='text-warning'>${parseFloat(avg).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[record.lat,record.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
         L.circle([record.lat, record.long]).addTo(map);
   }); 
 
@@ -129,14 +130,14 @@ function searchRecord()
             });
             // iterator++;
 
-            msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`;
+            msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`;
             msg += `</ul>`;
             msg +=  `<small class='text-muted'><b class = 'average'>${data.Ratings.toFixed(2)}</b></small>`;
             msg += "</a><br/>";
             document.querySelector('#list').innerHTML +=  msg; 
             
             //Display markers of each location
-            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.restaurantName} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
+            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.restaurantName} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
             L.circle([data.lat, data.long]).addTo(map);
           }
         });
@@ -189,13 +190,13 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
     txtAddress.value = null;
     txtLat.value = null;
     txtLong.value = null;
-    L.marker([txtLat.value, txtLong.value]).addTo(map).bindPopup(`${txtRestoName.value} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[txtLat.value, txtLong.value]}&fov=80&heading=70&pitch=0&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4'/>`).openPopup();
+    L.marker([txtLat.value, txtLong.value]).addTo(map).bindPopup(`${txtRestoName.value} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[txtLat.value, txtLong.value]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
     L.circle([txtLat.value, txtLong.value]).addTo(map);
    }else{
     alert("Problem encountered in adding restaurant");
   }
 });
-
+  
 
 //https://developers.google.com/places/web-service/search
 
@@ -206,3 +207,45 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 
 //Referencing the location of our home
 //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4')
+
+
+// fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`)
+// .then((resp) => {
+//   resp.json();
+// })
+// .then((data) => {
+//   console.log(data);
+// })
+// .catch(err => console.error(err));
+
+// fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`).then(function(response) {
+//   console.log(response.headers.get('Content-Type'));
+//   console.log(response.headers.get('Date'));
+
+//   console.log(response.status);
+//   console.log(response.statusText);
+//   console.log(response.type);
+//   console.log(response.url);
+// });
+
+// var jsonData = $.ajax({
+//   url:"http://maps.googleapis.com/maps/api/geocode/json?address=",
+//   dataType:"json",
+//   async:true,
+//   success: function(json){}
+//   )};
+
+
+//https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJdUcWsFrJlzMRWJyTjszhhso&fields=name,rating,review,formatted_phone_number&key=AIzaSyBdX9wWxETF43D9sE0FHsrdOhkHIa6EXBw
+
+//fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`)
+// fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJkcW-HUXJlzMR1WYosOCQE14&fields=name,rating,review,formatted_phone_number&key=${API_KEY}`)
+// .then((resp) => {
+//   resp.json();
+// })
+// .then((data) => {
+//   console.log(data);
+// })
+// .catch(err => console.error(err));

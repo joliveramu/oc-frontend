@@ -60,6 +60,8 @@ describe('controller', function () {
 
 	it('should show entries on start-up', function () {
 		// TODO: write test
+	
+
 	});
 
 	describe('routing', function () {
@@ -84,10 +86,14 @@ describe('controller', function () {
 
 		it('should show active entries', function () {
 			// TODO: write test
+
+
 		});
 
 		it('should show completed entries', function () {
 			// TODO: write test
+
+
 		});
 	});
 
@@ -135,25 +141,35 @@ describe('controller', function () {
 
 	it('should highlight "All" filter by default', function () {
 		// TODO: write test
+
+
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
 		// TODO: write test
+
+
 	});
 
 	describe('toggle all', function () {
 		it('should toggle all todos to completed', function () {
 			// TODO: write test
+
+			
 		});
 
 		it('should update the view', function () {
 			// TODO: write test
+
+
 		});
 	});
 
 	describe('new todo', function () {
 		it('should add a new todo to the model', function () {
 			// TODO: write test
+
+
 		});
 
 		it('should add a new todo to the view', function () {
@@ -194,6 +210,8 @@ describe('controller', function () {
 	describe('element removal', function () {
 		it('should remove an entry from the model', function () {
 			// TODO: write test
+
+			
 		});
 
 		it('should remove an entry from the view', function () {
