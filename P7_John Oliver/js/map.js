@@ -3,6 +3,7 @@ var map = L.map('map').setView([14.5552734,120.9999306], 13);
 L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=rbSj7RYeRSmrshxqhdgx',{
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
 }).addTo(map);
+  
 
 //Location view
 map.locate({setView: true, maxZoom: 16});
@@ -37,6 +38,7 @@ map.on('locationerror', onLocationError);
 
 
 
+
 function onMapClick(e) {
     //alert("You clicked the map at " + e.latlng);
     //Displays Latitude value at txtLat input
@@ -48,4 +50,22 @@ function onMapClick(e) {
 }
 
    
-    map.on('click', onMapClick);
+map.on('click', onMapClick);
+
+
+// function initMap() {
+//   const request = {
+//       placeId: "ChIJdUcWsFrJlzMRWJyTjszhhso",
+//       fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+//     };
+//     const service = new google.maps.places.PlacesService(map);
+//     service.getDetails(request, (place, status) => {
+//       if (status === google.maps.places.PlacesServiceStatus.OK) {
+//         console.log(place.name);
+//       }else{
+//         console.log(request);
+//       }
+//     });
+// }
+
+// initMap();

@@ -1,0 +1,115 @@
+{
+    "influence":[
+        
+        {
+            "handle":"https://mobile.twitter.com/LeilaGharani",
+            "Name":"Leila Gharani",
+            "Expertise": "MS Excel"
+        },
+        {
+            "handle":"https://mobile.twitter.com/adrian_twarog",
+            "Name":"Adrian Twarog",
+            "Expertise": "Design, Dev, Web/App, UI, UX"
+        },
+        {
+            "handle":"https://mobile.twitter.com/codeSTACKr",
+            "Name":"𝚌𝚘𝚍𝚎𝚂𝚃𝙰𝙲𝙺𝚛 ⚡👨‍💻 #vsCodeHero",
+            "Expertise": "Web Development"
+        },
+        {
+            "handle":"https://mobile.twitter.com/DevSimplified",
+            "Name":"Web Dev Simplified",
+            "Expertise": "Web Development"
+        },
+        {
+            "handle":"https://mobile.twitter.com/JoeIngeno",
+            "Name":"Joe Ingeno",
+            "Expertise": "Software Architect | Developer | Author of Software Architect's Handbook "
+        },
+        {
+            "handle":"https://mobile.twitter.com/flaviocopes",
+            "Name":"flavio",
+            "Expertise": "Computer Programming (Diversity)"
+        },
+        {
+            "handle":"https://mobile.twitter.com/ellie_html",
+            "Name":"ᴇʟʟɪᴇ ♡",
+            "Expertise": "Web Development"
+        },
+        {
+            "handle":"https://mobile.twitter.com/ayushi7rawat",
+            "Name":"Ayushi Rawat 🐍",
+            "Expertise": "Software Developer | Technical Blogging"
+        },
+        {
+            "handle":"https://mobile.twitter.com/ravinwashere",
+            "Name":"Ravin",
+            "Expertise": "JavaScript/API"
+        },
+        {
+            "handle":"https://mobile.twitter.com/PeterZaitsev",
+            "Name":"Peter Zaitsev",
+            "Expertise": "Founder & CEO at Percona - Open Source with MySQL, MariaDB, MongoDB, PostgreSQL"
+        },
+        {
+            "handle":"https://mobile.twitter.com/ania_kubow",
+            "Name":"Ania Kubów #JavaScriptGames",
+            "Expertise": "JavaScript/Web Design"
+        },
+        {
+            "handle":"https://mobile.twitter.com/EvePardi",
+            "Name":"Eve Pardi",
+            "Expertise": "Microsoft AI MVP"
+        },
+        {
+            "handle":"https://mobile.twitter.com/irfaanshakeel",
+            "Name":"Irfan Shakeel",
+            "Expertise": "Cyber security researcher"
+        },
+        {
+            "handle":"https://mobile.twitter.com/KodyKinzie",
+            "Name":"Kody Kinzie",
+            "Expertise": "Hacker/Security Researcher"
+        },
+        {
+            "handle":"https://mobile.twitter.com/florinpop1705",
+            "Name":"Florin Pop",
+            "Expertise": "Web Developer"
+        },
+        {
+            "handle":"https://mobile.twitter.com/adrianholovaty",
+            "Name":"Adrian Holovaty",
+            "Expertise": "Web developer, cocreator of @djangoproject"
+        },
+        {
+            "handle":"https://mobile.twitter.com/themarcba",
+            "Name":"Marc Backes",
+            "Expertise": "Full-Stack Web Developer"
+        },
+        {
+            "handle":"https://mobile.twitter.com/wesbos",
+            "Name":"Wes Bos",
+            "Expertise": "Fullstack Dev"
+        },
+        {
+            "handle":"https://mobile.twitter.com/ossia",
+            "Name":"Quincy Larson",
+            "Expertise": "Teacher at @freeCodeCamp"
+        },
+        {
+            "handle":"https://mobile.twitter.com/traversymedia",
+            "Name":"Brad Traversy",
+            "Expertise": "Full stack web developer"
+        },
+        {
+            "handle":"https://mobile.twitter.com/LucyStats",
+            "Name":"Lucy D’Agostino McGowan",
+            "Expertise": "Biostatistician"
+        },
+        {
+            "handle":"https://mobile.twitter.com/hugobowne",
+            "Name":"Hugo Bowne-Anderson",
+            "Expertise": "Data Scientist"
+        }
+    ]
+}

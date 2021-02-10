@@ -76,7 +76,7 @@ fetch("js/data.json")
      let query = alasql(`select r.restaurantName, r.id from restaurant as r;`);
       query.forEach(function(data){
         holder += `<option value ='${data.id}'>${data.restaurantName}</option>`;
-        console.log(data.resto_name);
+        console.log(data.restaurantName);
       });
         holder += `</select>`;
         holder += `<input type ='number' class = 'form-control mb-2' min='1' max='5' placeholder = 'Select from 1 to 5' id = 'txtStars'/>`;
@@ -249,3 +249,43 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 //   console.log(data);
 // })
 // .catch(err => console.error(err));
+
+// const request = {
+//   placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
+//   fields: ["name", "formatted_address", "place_id", "geometry"],
+// };
+
+// const service = new google.maps.places.PlacesService(map);
+
+// service.getDetails(request, (place, status) => {
+//   let p = place;
+//   if (status === google.maps.places.PlacesServiceStatus.OK) {
+//     // const marker = new google.maps.Marker({
+//     //   map,
+//     //   position: place.geometry.location,
+//     // });
+//  console.log(status);
+//   }
+// });
+
+
+// Working 
+// function initMap() {
+//   const map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: -33.866, lng: 151.196 },
+//     zoom: 15,
+//   });
+//   const request = {
+//       placeId: ["ChIJBzEKw0bJlzMR-UCYA_Ofsw0"],
+//       fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+//     };
+//     const service = new google.maps.places.PlacesService(map);
+//     service.getDetails(request, (place, status) => {
+//       if (status === google.maps.places.PlacesServiceStatus.OK) {
+//         console.log(`${place.name} ${JSON.stringify(place.reviews)}`);
+//       }
+//     });
+// }
+
+// initMap();
+
