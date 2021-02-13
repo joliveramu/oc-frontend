@@ -63,7 +63,7 @@ map.on('click', onMapClick);
 //       if (status === google.maps.places.PlacesServiceStatus.OK) {
 //         console.log(place.name);
 //       }else{
-//         console.log(request);
+//         console.log(status);
 //       }
 //     });
 // }

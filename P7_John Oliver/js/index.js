@@ -234,58 +234,30 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 //   url:"http://maps.googleapis.com/maps/api/geocode/json?address=",
 //   dataType:"json",
 //   async:true,
-//   success: function(json){}
-//   )};
-
-
-//https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJdUcWsFrJlzMRWJyTjszhhso&fields=name,rating,review,formatted_phone_number&key=AIzaSyBdX9wWxETF43D9sE0FHsrdOhkHIa6EXBw
-
-//fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`)
-// fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJkcW-HUXJlzMR1WYosOCQE14&fields=name,rating,review,formatted_phone_number&key=${API_KEY}`)
-// .then((resp) => {
-//   resp.json();
-// })
-// .then((data) => {
-//   console.log(data);
-// })
-// .catch(err => console.error(err));
-
-// const request = {
-//   placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-//   fields: ["name", "formatted_address", "place_id", "geometry"],
+//   success: function(json){},
+//   )
 // };
 
-// const service = new google.maps.places.PlacesService(map);
+//Function to init map and do get place details api
+function initMap() {
 
-// service.getDetails(request, (place, status) => {
-//   let p = place;
-//   if (status === google.maps.places.PlacesServiceStatus.OK) {
-//     // const marker = new google.maps.Marker({
-//     //   map,
-//     //   position: place.geometry.location,
-//     // });
-//  console.log(status);
-//   }
-// });
+   const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -33.866, lng: 151.196 },
+    zoom: 15,
+  });
+  const request = {
+      placeId: "ChIJBzEKw0bJlzMR-UCYA_Ofsw0",
+      fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+    };
+    const service = new google.maps.places.PlacesService(map);
+    service.getDetails(request, (place, status) => {
+      console.log(place.name);
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(place.reviews);
+      }else{
+        console.log(status);
+      }
+    });
+}
 
-
-// Working 
-// function initMap() {
-//   const map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: -33.866, lng: 151.196 },
-//     zoom: 15,
-//   });
-//   const request = {
-//       placeId: ["ChIJBzEKw0bJlzMR-UCYA_Ofsw0"],
-//       fields: ["name", "formatted_address", "place_id", "review", "geometry"],
-//     };
-//     const service = new google.maps.places.PlacesService(map);
-//     service.getDetails(request, (place, status) => {
-//       if (status === google.maps.places.PlacesServiceStatus.OK) {
-//         console.log(`${place.name} ${JSON.stringify(place.reviews)}`);
-//       }
-//     });
-// }
-
-// initMap();
-
+initMap();
