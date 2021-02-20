@@ -239,25 +239,53 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 // };
 
 //Function to init map and do get place details api
-function initMap() {
+// function initMap() {
 
-   const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -33.866, lng: 151.196 },
-    zoom: 15,
-  });
-  const request = {
-      placeId: "ChIJBzEKw0bJlzMR-UCYA_Ofsw0",
-      fields: ["name", "formatted_address", "place_id", "review", "geometry"],
-    };
-    const service = new google.maps.places.PlacesService(map);
-    service.getDetails(request, (place, status) => {
-      console.log(place.name);
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(place.reviews);
-      }else{
-        console.log(status);
-      }
-    });
+//    const map = new google.maps.Map(document.getElementById("map"), {
+//     center: { lat: -33.866, lng: 151.196 },
+//     zoom: 15,
+//   });
+//   const request = {
+//       placeId: "ChIJBzEKw0bJlzMR-UCYA_Ofsw0",
+//       fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+//     };
+//     const service = new google.maps.places.PlacesService(map);
+//     service.getDetails(request, (place, status) => {
+//       console.log(place.name);
+//       if (status === google.maps.places.PlacesServiceStatus.OK) {
+//         console.log(place.reviews);
+//       }else{
+//         console.log(status);
+//       }
+//     });
+// }
+
+// initMap();
+
+function initMap(id) {
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+   center: { lat: -33.866, lng: 151.196 },
+   zoom: 15,
+ });
+ const request = {
+     placeId: id,
+     fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+   };
+   const service = new google.maps.places.PlacesService(map);
+   service.getDetails(request, (place, status) => {
+     console.log(place.name);
+     if (status === google.maps.places.PlacesServiceStatus.OK) {
+       console.log(place.reviews);
+     }else{
+       console.log(status);
+     }
+   });
 }
+// let placeIds = ['ChIJkcW-HUXJlzMRdYzC-2ToWss','ChIJkcW-HUXJlzMRdRn8kww62ec','ChIJz73lY1TJlzMRC_4zjvSdjT8','ChIJkcW-HUXJlzMRgCnrgmjtNbc'];
 
-initMap();
+// for(let i = 0; i < placeIds.length; i++)
+// {
+//   initMap(placeIds[i]);
+// }
+// initMap();
