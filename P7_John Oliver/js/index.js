@@ -4,7 +4,7 @@ let query = "";
 let query2 = "";
 
 let revs;
-const API_KEY = "AIzaSyBdX9wWxETF43D9sE0FHsrdOhkHIa6EXBw";
+const API_KEY = "<API_KEY_>"
 
 fetch("js/data.json")
 .then((res) => res.json())
@@ -198,18 +198,6 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 });
   
 
-//https://developers.google.com/places/web-service/search
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-//Referencing location of CKA Resto
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5431196,121.0026515&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-//Referencing the location of our home
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-//fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4')
-
 
 // fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`)
 // .then((resp) => {
@@ -274,7 +262,8 @@ function initMap(id) {
    };
    const service = new google.maps.places.PlacesService(map);
    service.getDetails(request, (place, status) => {
-     console.log(place.name);
+     //console.log(place.name);
+     document.querySelector('#list').innerHTML = null;
      if (status === google.maps.places.PlacesServiceStatus.OK) {
        console.log(place.reviews);
      }else{
