@@ -4,6 +4,14 @@ L.tileLayer('https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=rbSj7
         attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
 }).addTo(map);
   
+// new L.Control.GPlaceAutocomplete({
+//     callback: function(place){
+//         var loc = place.geometry.location;
+//         map.panTo([loc.lat(), loc.lng()]);
+//         map.setZoom(18);
+//     }
+// }).addTo(map);
+
 
 //Location view
 map.locate({setView: true, maxZoom: 16});

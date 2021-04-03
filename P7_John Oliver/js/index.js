@@ -4,7 +4,9 @@ let query = "";
 let query2 = "";
 
 let revs;
-const API_KEY = "<API_KEY_>"
+const API_KEY = null;
+
+let placesIdArr = [];
 
 fetch("js/data.json")
 .then((res) => res.json())
@@ -99,7 +101,8 @@ function searchRecord()
   // let iterator = 1;
     if(range2.value < range1.value)
     {
-      // alert("Second Parameter must be greater than the 1st parameter");
+       alert("First Parameter must be greater than the 1st parameter");
+       range2.focus();
     }else{
       $(".leaflet-marker-icon").remove();
         $(".leaflet-popup").remove();
@@ -154,7 +157,6 @@ function searchRecord()
     let isOkay = alasql(`insert into restaurant_review (restaurant_id, stars, comment) values (${cmbRestaurant.value}, ${txtStars.value}, '${txtReview.value.replaceAll("'","\\'")}');`,);
     if(isOkay === 1)
     {
-      alert("Review for the restaurant is added!!");
       txtStars.value ="";
       cmbRestaurant.value = "";
       txtReview.value = "";
@@ -163,7 +165,8 @@ function searchRecord()
          console.log(data);
        });
        console.log(alasql("select * from restaurant_review"));
-       // frmReview.submit();
+       alert("Review for the restaurant is added!!");
+       $('#exampleModal').modal('hide');
     }else{
       alert("Cannot submit");
     }
@@ -186,17 +189,33 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
   {
     loadRestaurants();
     alert("Restaurant is added!!");
+    //Add marker of the currently added restaurants
+    L.marker([txtLat.value, txtLong.value]).addTo(map).bindPopup(`${txtRestoName.value} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[txtLat.value, txtLong.value]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
+    L.circle([txtLat.value, txtLong.value]).addTo(map);
+    //Remove entered values in the form
     txtRestoName.value = null;
     txtAddress.value = null;
     txtLat.value = null;
     txtLong.value = null;
-    L.marker([txtLat.value, txtLong.value]).addTo(map).bindPopup(`${txtRestoName.value} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[txtLat.value, txtLong.value]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
-    L.circle([txtLat.value, txtLong.value]).addTo(map);
+    $('#exampleModal2').modal('hide');
+
    }else{
     alert("Problem encountered in adding restaurant");
   }
 });
   
+
+//https://developers.google.com/places/web-service/search
+
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//Referencing location of CKA Resto
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5431196,121.0026515&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//Referencing the location of our home
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
+
+//fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4')
 
 
 // fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=49.246292,-123.116226&radius=500000`)
@@ -248,33 +267,66 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
 //     });
 // }
 
-// initMap();
+// function initMap(id) {
 
-function initMap(id) {
-
-  const map = new google.maps.Map(document.getElementById("map"), {
-   center: { lat: -33.866, lng: 151.196 },
-   zoom: 15,
- });
- const request = {
-     placeId: id,
-     fields: ["name", "formatted_address", "place_id", "review", "geometry"],
-   };
-   const service = new google.maps.places.PlacesService(map);
-   service.getDetails(request, (place, status) => {
-     //console.log(place.name);
-     document.querySelector('#list').innerHTML = null;
-     if (status === google.maps.places.PlacesServiceStatus.OK) {
-       console.log(place.reviews);
-     }else{
-       console.log(status);
-     }
-   });
-}
+//   const map = new google.maps.Map(document.getElementById("map"), {
+//    center: { lat: 14.5552734, lng: 120.9999306 },
+//    zoom: 15,
+//  });
+//  const request = {
+//      placeId: id,
+//      fields: ["name", "formatted_address", "place_id", "review", "geometry"],
+//    };
+//    const infowindow = new google.maps.InfoWindow();
+//    const service = new google.maps.places.PlacesService(map);
+//    service.getDetails(request, (place, status) => {
+//      if (status === google.maps.places.PlacesServiceStatus.OK && place && place.geometry && place.geometry.location) {
+//       console.log(`Name of the place: ${place.name}`);
+//       console.log(place);
+//       console.log(place.formatted_address);
+//      }else{
+//        console.log(status);
+//      }
+//    });
+// }
 // let placeIds = ['ChIJkcW-HUXJlzMRdYzC-2ToWss','ChIJkcW-HUXJlzMRdRn8kww62ec','ChIJz73lY1TJlzMRC_4zjvSdjT8','ChIJkcW-HUXJlzMRgCnrgmjtNbc'];
 
 // for(let i = 0; i < placeIds.length; i++)
 // {
 //   initMap(placeIds[i]);
 // }
-// initMap();
+
+//fetch google places review per id
+function displayReviews(id)
+{
+  fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&fields=name,rating,formatted_phone_number,reviews,geometry&key=${API_KEY}`)
+  .then((resp) => {
+  return resp.json();
+  })
+  .then((dataReviews) => {
+      // console.log([dataReviews.result.geometry.location.lat, dataReviews.result.geometry.location.lng]);
+      // console.log(dataReviews.result.name);  
+      L.marker([dataReviews.result.geometry.location.lat, dataReviews.result.geometry.location.lng]).addTo(map).bindPopup(`${dataReviews.result.name} <label class ='text-warning'></label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[dataReviews.result.geometry.location.lat, dataReviews.result.geometry.location.lng]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
+       L.circle([dataReviews.result.geometry.location.lat, dataReviews.result.geometry.location.lng]).addTo(map);
+  })
+  .catch(err => console.error(err));
+}
+
+//fetch places search
+fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${API_KEY}&location=14.5552734,120.9999306&type=restaurant&radius=500000`)
+.then((resp) => {
+  return resp.json();
+})
+.then((data) => {
+  let placesLength = data.results.length;
+  // console.log(placesLength);
+  for(let i = 0; i < 5; i++)
+  {
+    displayReviews(data.results[i].place_id)
+  }
+})
+.catch(err => console.error(err));
+
+
+
+

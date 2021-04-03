@@ -86,8 +86,8 @@
                                    <form method = "POST" id = "frmAddRestaurant">
                                     <input type = "text" id = "txtRestoName" placeholder="Enter Restaurant Name" class = "form-control mb-2" required/>
                                     <input type = "text" id = "txtAddress" placeholder = "Restaurant's Address" class = "form-control mb-2" required/>
-                                    <input type = "number" step="any" id = "txtLat" placeholder="Latitude" class = "form-control mb-2" required/>
-                                    <input type = "number" step="any" id = "txtLong" placeholder="Longitude" class = "form-control mb-2"required/>
+                                    <input type = "number" step="any" id = "txtLat" readonly = "true" placeholder="Latitude" class = "form-control mb-2" required/>
+                                    <input type = "number" step="any" id = "txtLong" readonly = "true" placeholder="Longitude" class = "form-control mb-2"required/>
                                     <button type = "submit" id = "btnAddRestaurant" class = "btn btn-info">Save Restaurant</button>
                                    </form>
                             </div>
@@ -106,7 +106,8 @@
             <div class = "form-group">
                 <form>
                     <label>Filters</label>
-                     <select id ="range1" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
+                     
+                      <select id ="range2" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
                         <option value = "">Select Stars</option>
                         <option value = "5">5</option>
                         <option value = "4">4</option>
@@ -114,7 +115,7 @@
                         <option value = "2">2</option>
                         <option value = "1">1</option>
                       </select>
-                      <select id ="range2" class ="form-control" style="width:50%;" required onchange="searchRecord()">
+                      <select id ="range1" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
                         <option value = "">Select Stars</option>
                         <option value = "5">5</option>
                         <option value = "4">4</option>
@@ -133,19 +134,11 @@
     </div>
 
    
-    <!-- Google Places API -->
-  
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>&libraries=places"></script> -->
     
-
+    <script src="/js/leaflet-gplaces-autocomplete.js"></script> -->
     <script src="js/alasql.min.js"></script>
-
-    
     <script src="js/index.js"></script>
-    
     <!-- Leaflet JS-->
     <script src="js/map.js"></script>
-    <!-- <script src="js/StreeViewButton.js"></script> -->
-    <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdX9wWxETF43D9sE0FHsrdOhkHIa6EXBw&callback=initMap&libraries=places&v=weekly"></script> -->
 </body>
 </html>
