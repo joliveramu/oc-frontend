@@ -59,21 +59,3 @@ function onMapClick(e) {
 
    
 map.on('click', onMapClick);
-
-
-// function initMap() {
-//   const request = {
-//       placeId: "ChIJdUcWsFrJlzMRWJyTjszhhso",
-//       fields: ["name", "formatted_address", "place_id", "review", "geometry"],
-//     };
-//     const service = new google.maps.places.PlacesService(map);
-//     service.getDetails(request, (place, status) => {
-//       if (status === google.maps.places.PlacesServiceStatus.OK) {
-//         console.log(place.name);
-//       }else{
-//         console.log(status);
-//       }
-//     });
-// }
-
-// initMap();

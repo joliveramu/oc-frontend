@@ -86,8 +86,8 @@
                                    <form method = "POST" id = "frmAddRestaurant">
                                     <input type = "text" id = "txtRestoName" placeholder="Enter Restaurant Name" class = "form-control mb-2" required/>
                                     <input type = "text" id = "txtAddress" placeholder = "Restaurant's Address" class = "form-control mb-2" required/>
-                                    <input type = "number" step="any" id = "txtLat" readonly = "true" placeholder="Latitude" class = "form-control mb-2" required/>
-                                    <input type = "number" step="any" id = "txtLong" readonly = "true" placeholder="Longitude" class = "form-control mb-2"required/>
+                                    <input type = "number" step="any" id = "txtLat"  placeholder="Latitude" class = "form-control mb-2" required/>
+                                    <input type = "number" step="any" id = "txtLong"  placeholder="Longitude" class = "form-control mb-2"required/>
                                     <button type = "submit" id = "btnAddRestaurant" class = "btn btn-info">Save Restaurant</button>
                                    </form>
                             </div>
@@ -135,10 +135,77 @@
 
    
     
-    <script src="/js/leaflet-gplaces-autocomplete.js"></script> -->
+    <script src="/js/leaflet-gplaces-autocomplete.js"></script>
     <script src="js/alasql.min.js"></script>
     <script src="js/index.js"></script>
     <!-- Leaflet JS-->
     <script src="js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+    <script>
+      let maps;
+      let service;
+      let totalRating = 0
+      
+      function nearbyPlaceSearch() {
+        const myLoc = new google.maps.LatLng(14.5552734, 120.9999306);
+        
+        maps = new google.maps.Map(document.createElement("maps"), {
+        // maps = new google.maps.Map(document.getElementById("map"), {
+          center: myLoc,
+          zoom: 15,
+        });
+        const request = {
+            location: myLoc,
+            radius: 5000,
+              type: ['restaurant']
+        };
+        service = new google.maps.places.PlacesService(maps);
+        service.nearbySearch(request, (results, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+            for (let i = 0; i < 2; i++) {
+            //   console.log(results[i].place_id);
+            // console.log(results[i]);
+            
+              placeDetails(results[i].place_id);
+
+            }
+          }
+        });
+      }
+
+      function placeDetails(id)
+      {
+        const request = {
+          placeId: id,
+          fields: ["name", "formatted_address", "place_id", "geometry", "reviews"],
+        };
+
+        service.getDetails(request, (place, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && place && place.geometry && place.geometry.location){
+                //console.log([place.geometry.location.lat(),place.geometry.location.lng()]);
+                alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${place.name}', '${place.formatted_address}', ${place.geometry.location.lat()}, ${place.geometry.location.lng()});`);
+                // console.log(place);
+                for(let i = 0; i < place.reviews.length; i++)
+                {
+                    totalRating += place.reviews[i].rating;
+                    //  alasql(`insert into restaurant_review (restaurant_id, stars, comment) SELECT MAX(restaurant.id), ${place.reviews[i].rating}, '${place.reviews[i].text}.replaceAll("'","\\'")}' from restaurant;`);
+                    // alasql(`insert into restaurant_review (restaurant_id, stars, comment) VALUES (5, ${place.reviews[i].rating}, '${place.reviews[i].text.replaceAll("'","\\'")}');`);
+                }
+                //console.log(place);
+                // alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${place.name}', '${place.formatted_address}', ${place.geometry.location.lat()}, ${place.geometry.location.lng()});`);
+                L.marker([place.geometry.location.lat(), place.geometry.location.lng()]).addTo(map).bindPopup(`${place.name} <label class ='text-warning'>${parseFloat(totalRating / place.reviews.length).toFixed(2)} stars</label> <br> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[place.geometry.location.lat(),place.geometry.location.lng()]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
+                L.circle([place.geometry.location.lat(), place.geometry.location.lng()]).addTo(map);
+                
+                totalRating = 0;
+                // console.log(place);
+                loadRestaurants();
+                
+          }});
+
+         
+      }
+      nearbyPlaceSearch();
+    </script>
+    </script>
 </body>
 </html>
