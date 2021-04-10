@@ -25,11 +25,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <!-- <a class="navbar-brand" href="index.html">Home</a> -->
                     <img src = "assets/cookingpot.png" height = "50" width="50" class ="m-1"/>
                 </li> 
                 <li class="nav-item">
-                    <!-- <a class="navbar-brand" href="index.html">Home</a> -->
                     <h4><b>Resto Mungkahi MNL</b></h1>
                     <h5>Finest Restaurants in the PH's Metropolitan Manila!</h4>
                 </li> 
@@ -105,8 +103,8 @@
             <!-- For filter of stars  -->
             <div class = "form-group">
                 <form>
-                    <label>Filters</label>
-                     
+                    <label>Filters</label><br/>
+                     <label class = "font-weight-bold">1st Parameter</label>
                       <select id ="range2" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
                         <option value = "">Select Stars</option>
                         <option value = "5">5</option>
@@ -115,7 +113,8 @@
                         <option value = "2">2</option>
                         <option value = "1">1</option>
                       </select>
-                      <select id ="range1" class ="form-control mb-2" style="width:50%;" required onchange="searchRecord()">
+                      <label class = "font-weight-bold">2nd Parameter</label>
+                      <select id ="range1" class ="form-control mb-2" style="width:50%;" placeholder="hello" required onchange="searchRecord()">
                         <option value = "">Select Stars</option>
                         <option value = "5">5</option>
                         <option value = "4">4</option>
@@ -123,8 +122,7 @@
                         <option value = "2">2</option>
                         <option value = "1">1</option>
                       </select>
-                    <!-- <input type = "number" class = "form-control" style="width: 50%;" id ="range1" pattern = "([1-9])+(?:-?\d){1,}"  placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/><br/>
-                    <input type = "number" class = "form-control" style="width: 50%;" id ="range2" pattern = "([1-9])+(?:-?\d){1,}" value = "5" placeholder = "Enter values from 1 to 5" min = "1" max = "5" required onchange="searchRecord()"/> -->
+
                 </form>
             </div>
             <div class = "list-group overflow-auto" id = "list" style="height: 250px;">
@@ -140,32 +138,32 @@
     <script src="js/index.js"></script>
     <!-- Leaflet JS-->
     <script src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<YOUR API KEY>&libraries=places"></script>
     <script>
       let maps;
       let service;
       let totalRating = 0
+      let iD = 0;
       
       function nearbyPlaceSearch() {
         const myLoc = new google.maps.LatLng(14.5552734, 120.9999306);
         
         maps = new google.maps.Map(document.createElement("maps"), {
-        // maps = new google.maps.Map(document.getElementById("map"), {
+
           center: myLoc,
           zoom: 15,
         });
         const request = {
             location: myLoc,
-            radius: 5000,
+            radius: 2000,
               type: ['restaurant']
         };
         service = new google.maps.places.PlacesService(maps);
+        //called nearbySearch service to generate place id according to the requests made
         service.nearbySearch(request, (results, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-            for (let i = 0; i < 2; i++) {
-            //   console.log(results[i].place_id);
-            // console.log(results[i]);
-            
+            for (let i = 0; i < results.length; i++) {    
+              //Call places details to display reviews according to the place id
               placeDetails(results[i].place_id);
 
             }
@@ -173,39 +171,49 @@
         });
       }
 
+      //Function to call Google Places Details API
       function placeDetails(id)
       {
         const request = {
           placeId: id,
           fields: ["name", "formatted_address", "place_id", "geometry", "reviews"],
         };
-
+        //calling places details api
         service.getDetails(request, (place, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK && place && place.geometry && place.geometry.location){
                 //console.log([place.geometry.location.lat(),place.geometry.location.lng()]);
-                alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${place.name}', '${place.formatted_address}', ${place.geometry.location.lat()}, ${place.geometry.location.lng()});`);
-                // console.log(place);
+                alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${place.name.replaceAll("'","\\'")}', '${place.formatted_address.replaceAll("'","\\'")}', ${place.geometry.location.lat()}, ${place.geometry.location.lng()});`);
+                  //console.log(place.reviews.length);
+                  
                 for(let i = 0; i < place.reviews.length; i++)
                 {
-                    totalRating += place.reviews[i].rating;
-                    //  alasql(`insert into restaurant_review (restaurant_id, stars, comment) SELECT MAX(restaurant.id), ${place.reviews[i].rating}, '${place.reviews[i].text}.replaceAll("'","\\'")}' from restaurant;`);
-                    // alasql(`insert into restaurant_review (restaurant_id, stars, comment) VALUES (5, ${place.reviews[i].rating}, '${place.reviews[i].text.replaceAll("'","\\'")}');`);
+                        //Calculating ratings from reviews available
+                        totalRating += place.reviews[i].rating;
+                        //Get the latest id in the table
+                        let restaurantId = alasql("select max(id) as rid from restaurant"); 
+                        restaurantId.forEach(function(data){
+                            //set restaurant ID    
+                            iD = data.rid;
+                        })
+                        //Add to restaurant review table
+                        alasql(`insert into restaurant_review (restaurant_id, stars, comment) VALUES (${iD}, ${place.reviews[i].rating}, '${place.reviews[i].text.substring(0,100).replaceAll("'","\\'")}');`);
+                   
                 }
-                //console.log(place);
-                // alasql(`insert into restaurant (restaurantName, address, lat, long) values ('${place.name}', '${place.formatted_address}', ${place.geometry.location.lat()}, ${place.geometry.location.lng()});`);
+            
+                //Added markers for the place
                 L.marker([place.geometry.location.lat(), place.geometry.location.lng()]).addTo(map).bindPopup(`${place.name} <label class ='text-warning'>${parseFloat(totalRating / place.reviews.length).toFixed(2)} stars</label> <br> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[place.geometry.location.lat(),place.geometry.location.lng()]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
                 L.circle([place.geometry.location.lat(), place.geometry.location.lng()]).addTo(map);
                 
                 totalRating = 0;
-                // console.log(place);
+
+                //call loadRestaurants function to add all restaurants gathered from the places search and details
                 loadRestaurants();
-                
           }});
 
          
       }
-      nearbyPlaceSearch();
+        //nearbyPlaceSearch();
     </script>
-    </script>
+   
 </body>
 </html>

@@ -4,10 +4,11 @@ let query = "";
 let query2 = "";
 
 let revs;
+//Provide your own API Key
 const API_KEY = "";
 
 
-
+//Fetch data from local json file of the restaurants and reviews
 fetch("js/data.json")
 .then((res) => res.json())
 .then((data) => {
@@ -42,6 +43,7 @@ fetch("js/data.json")
   
   function loadDataPersistent()
   {
+    //Create restaurant table query 
     query += alasql("CREATE TABLE restaurant(id integer not null primary key autoincrement, restaurantName text, address text, lat real NOT NULL ,long real NOT NULL);");
     query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('AU 2552', '2552 Aurora, Pasay, Metro Manila', 14.5434407, 121.0045482);"); 
     query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('CKA Jollyplate Eatery', '465 A-1 Protacio, Pasay, Metro Manila', 14.5431196, 121.0026515);");
@@ -49,10 +51,9 @@ fetch("js/data.json")
     query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('New Harlem Restaurant', 'Antonio S. Arnaiz Ave, Pasay, Metro Manila', 14.5472883, 120.9967544);");
     query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('CUSI-NAH Resto Bar', '2408-I P.Zamora, Pasay, 1303 Metro Manila', 14.5472929, 121.0006675);");
     query += alasql("insert into restaurant (restaurantName, address, lat, long) values ('Wei-Cha Capitol Food House', '552 Antonio S. Arnaiz Ave, Pasay, 1300 Metro Manila', 14.5481973, 121.0035737);");
-    let display = alasql("select * from restaurant");
-    //console.log(display);
-    
-    query2 += alasql("create table restaurant_review (id integer not null primary key autoincrement, restaurant_id int not null, stars integer not null, comment text not null);");
+ 
+    //Create restaurant_review table query 
+    query2 += alasql("create table restaurant_review (id integer not null primary key autoincrement, restaurant_id int not null, stars integer not null, comment text);");
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (1, 5,'Fine-dining cuisine in Aurora!');");
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (1, 5,'Cheap eats!');");
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (2, 4,'good sizzling variations');")
@@ -64,27 +65,24 @@ fetch("js/data.json")
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (4, 4,'So, goood!');")
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (5, 5,'Cheap eats!');")
     query2 += alasql("insert into restaurant_review (restaurant_id, stars, comment) values (6, 4,'food is quite acceptable');")
-    let display2 = alasql("select * from restaurant_review;");
-    //console.log(display2);
+
   }
 
+  //Load restaurants for the popup modal of restaurant review
   function loadRestaurants()
   {
     document.querySelector('#restaurants').innerHTML = null;
-    // let holder = `<form id = 'frmReview' method = 'POST'>`;
     let holder = `<select id = 'cmbRestaurant' class='form-control mb-2' required>`;
       holder += ` <option value =''>Select Restaurant</option>`;
-      // let query = alasql(`SELECT r.resto_name, r.id from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.id;`);
+
      let query = alasql(`select r.restaurantName, r.id from restaurant as r;`);
       query.forEach(function(data){
         holder += `<option value ='${data.id}'>${data.restaurantName}</option>`;
-        //console.log(data.restaurantName);
       });
         holder += `</select>`;
         holder += `<input type ='number' class = 'form-control mb-2' min='1' max='5' placeholder = 'Select from 1 to 5' id = 'txtStars'/>`;
         holder += `<textarea required class = 'form-control mb-2' id = 'txtReview' placeholder ='Write Review here..'></textarea>`;
         holder += `<button class="btn btn-primary" id ='btnSaveReview' onclick='submitReview()'>Save changes</button>`;
-        // holder += `</form>`;
         document.querySelector('#restaurants').innerHTML +=  holder;
   }
   
@@ -92,16 +90,14 @@ fetch("js/data.json")
   loadDataPersistent();
 
   //Load restaurants from SQL to combobox
-  // loadRestaurants();
+  loadRestaurants();
 
-  
+  //display restaurant and reviews in the map and to the sidebar
 function searchRecord()
 {
-  //Declaring iterator variable to handle restaurant id for reviewsQuery
-  // let iterator = 1;
     if(range2.value < range1.value)
-    {
-       alert("First Parameter must be greater than the 1st parameter");
+    {    
+       alert("First Parameter must be greater than the 2nd parameter");
        range2.focus();
     }else{
       $(".leaflet-marker-icon").remove();
@@ -116,6 +112,9 @@ function searchRecord()
          
           if(data.Ratings >= range1.value && data.Ratings <= range2.value)
           {
+            // Called the function nearbyPlaceSearch() from index.html to generate nearbysearch and places details
+            nearbyPlaceSearch();  
+            //displaying all the gathered reviews and ratings in the sidebar
             msg = "<a class='list-group-item list-group-item-action flex-column align-items-start'>";
             msg += "<div class='d-flex w-100 justify-content-between'>";
             msg += `<h5 class='mb-1 text-info'>${data.restaurantName}<br/><hr/>${data.address}</h5>`;
@@ -124,14 +123,13 @@ function searchRecord()
             msg += `<p class='mb-1 text-truncate'></p>`;
             msg += `<ul>`;
 
-        
+            //display all the query results of reviewsQuery with matching data.id of restaurantQuery
             reviewsQuery.forEach(function(reviewRecord){
               if(reviewRecord.restaurant_id === data.id)
               {
                 msg +=  `<li><small class='text-muted'><b>${reviewRecord.comment}</b></small></li>`;
               }
             });
-            // iterator++;
 
             msg += `<img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`;
             msg += `</ul>`;
@@ -140,8 +138,9 @@ function searchRecord()
             document.querySelector('#list').innerHTML +=  msg; 
             
             //Display markers of each location
-            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.restaurantName} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
+            L.marker([data.lat, data.long]).addTo(map).bindPopup(`${data.restaurantName} <label class ='text-warning'>${parseFloat(data.Ratings).toFixed(2)} stars</label> <br> <img src='https://maps.googleapis.com/maps/api/streetview?size=150x150&location=${[data.lat,data.long]}&fov=80&heading=70&pitch=0&key=${API_KEY}'/>`).openPopup();
             L.circle([data.lat, data.long]).addTo(map);
+            
           }
         });
     }
@@ -160,11 +159,7 @@ function searchRecord()
       txtStars.value ="";
       cmbRestaurant.value = "";
       txtReview.value = "";
-      let query = alasql(`SELECT r.restaurantName, avg(rr.stars) AS Ratings, r.lat, r.long  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.resto_name, r.lat, r.long;`);
-       query.forEach(function(data){
-         console.log(data);
-       });
-      //  console.log(alasql("select * from restaurant_review"));
+      let query = alasql(`SELECT r.restaurantName, avg(rr.stars) AS Ratings, r.lat, r.long  from restaurant as r INNER JOIN restaurant_review as rr ON r.id = rr.restaurant_id where rr.stars group by r.restaurantName, r.lat, r.long;`);
        alert("Review for the restaurant is added!!");
        $('#exampleModal').modal('hide');
     }else{
@@ -175,7 +170,6 @@ function searchRecord()
     alert("Problem encountered: Error on submitting reviews.");
     txtStars.focus();
   }
-
  }
  
 
@@ -204,46 +198,6 @@ frmAddRestaurant.addEventListener('submit', (e) =>{
   }
 });
   
-
-//https://developers.google.com/places/web-service/search
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-//Referencing location of CKA Resto
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5431196,121.0026515&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-//Referencing the location of our home
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=14.5447563,121.0042593&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyCjeBzfVtmlDu9mRUIpJbCK_ekqSimIVB4
-
-
-// function initMap(id) {
-
-//   const map = new google.maps.Map(document.getElementById("map"), {
-//    center: { lat: 14.5552734, lng: 120.9999306 },
-//    zoom: 15,
-//  });
-//  const request = {
-//      placeId: id,
-//      fields: ["name", "formatted_address", "place_id", "review", "geometry"],
-//    };
-//    const infowindow = new google.maps.InfoWindow();
-//    const service = new google.maps.places.PlacesService(map);
-//    service.getDetails(request, (place, status) => {
-//      if (status === google.maps.places.PlacesServiceStatus.OK && place && place.geometry && place.geometry.location) {
-//       console.log(`Name of the place: ${place.name}`);
-//       console.log(place);
-//       console.log(place.formatted_address);
-//      }else{
-//        console.log(status);
-//      }
-//    });
-// }
-// let placeIds = ['ChIJkcW-HUXJlzMRdYzC-2ToWss','ChIJkcW-HUXJlzMRdRn8kww62ec','ChIJz73lY1TJlzMRC_4zjvSdjT8','ChIJkcW-HUXJlzMRgCnrgmjtNbc'];
-
-// for(let i = 0; i < placeIds.length; i++)
-// {
-//   initMap(placeIds[i]);
-// }
 
 //fetch google places review per id
 // function displayReviews(id)
